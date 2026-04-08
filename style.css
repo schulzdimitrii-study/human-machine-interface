@@ -1,67 +1,135 @@
-body {
-  margin: 0;
-  font-family: sans-serif;
-  background-color: #fefefe;
+:root {
+  --cor-click: #126ae2; /* Click */
+  --cor-sombra: #0a599b; /* Azul Escuro */
+  --cor-text: black; /* Preto */
+  --cor-back1: #edf2f4; /* Azul claro */
+  --cor-back2: #6a937a; /* Verde Escuro */
+  
+  --md-sys-color-primary: #126ae2;
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-primary-container: #edf2f4;
+  --md-sys-color-on-primary-container: #002020;
+  
+  --frequencia: #126ae2;
+  --nota: #126ae2;
+  --prova: #126ae2;
 }
 
-/* FLEXBOX: Perfeito para alinhar itens em uma barra de navegação */
+body {
+  margin: 0px;
+  background-color: var(--cor-back1);
+  font-family: "Arimo", sans-serif;
+}
+
 header {
   display: flex;
-  justify-content: space-between; /* Joga um item para cada lado */
-  align-items: center; /* Centraliza verticalmente */
-  background-color: lightblue;
+  justify-content: space-between; 
+  align-items: center; 
   padding: 15px 30px; 
-  box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
 #menu {
-  background-color: dodgerblue;
-  padding: 10px;
-  border-radius: 8px;
-  color: white;
+  cursor: pointer;
 }
 
-#perfil {
-  background-color: green;
-  padding: 10px;
-  border-radius: 8px;
-  color: white;
+#logo {
+  display: flex;
+  align-items: center;
+}
+
+.svg_logo {
+  width: 80px;
+}
+
+.path_logo {
+  fill: var(--cor-click);
 }
 
 main {
+  padding: 10px;
+}
+
+#mensagens {
+  background-color: white;
   padding: 20px;
+  margin: 10px 20px 20px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: grid;
+  gap: 15px;
 }
 
 #user_name {
-  font-size: 20pt;
-  margin-bottom: 20px;
+  font-size: 17pt;
   font-weight: bold;
-  color:white;
 }
 
-/* GRID: Ótimo para lidar com o espaçamento (gap) entre os blocos de mensagens */
-#mensagens {
-  display: grid;
-  gap: 15px; 
-}
-
-/* FLEXBOX: Excelente para alinhar o ícone e o texto dentro do card */
 .mns_box {
   display: flex;
   align-items: center;
-  gap: 15px; /* Substitui a necessidade de margins e paddings complexos */
-  background-color: rgb(255, 71, 71);
-  padding: 15px;
-  border-radius: 8px; /* Adicionado um leve arredondamento para ergonomia visual */
-  color: white; /* Contraste com o fundo verde */
+  gap: 15px;
 }
 
 .icon {
-  background-color: rgba(255, 255, 255, 0.2); /* Destaque visual sutil para o ícone */
-  padding: 10px;
-  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mns {
-   line-height: 1.4;
+  line-height: 1.4;
+}
+
+.material-symbols-outlined {
+  color: var(--cor-click);
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.icoG {
+  font-size: 30px;
+}
+
+.icoP {
+  font-size: 18px;
+}
+
+.font {
+  font-family: "Arimo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 14px;
+  color: var(--cor-text)
+}
+
+#menu_aba {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  z-index: 1;
+  display: none;
+  border-radius: 10px;
+}
+
+#menu_bot {
+  position: relative;
+  padding: 20px;
+  display: block;
+  cursor: pointer;
+  font-family: "Arimo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 14pt;
+  color: var(--cor-click);
+  transition: 0.5s;
 }
