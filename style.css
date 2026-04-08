@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #fefefe;
+}
+
+/* FLEXBOX: Perfeito para alinhar itens em uma barra de navegação */
+header {
+  display: flex;
+  justify-content: space-between; /* Joga um item para cada lado */
+  align-items: center; /* Centraliza verticalmente */
+  background-color: lightblue;
+  padding: 15px 30px; 
+  box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#menu {
+  background-color: dodgerblue;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
+}
+
+#perfil {
+  background-color: green;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
+}
+
+main {
+  padding: 20px;
+}
+
+#user_name {
+  font-size: 20pt;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color:white;
+}
+
+/* GRID: Ótimo para lidar com o espaçamento (gap) entre os blocos de mensagens */
+#mensagens {
+  display: grid;
+  gap: 15px; 
+}
+
+/* FLEXBOX: Excelente para alinhar o ícone e o texto dentro do card */
+.mns_box {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Substitui a necessidade de margins e paddings complexos */
+  background-color: rgb(255, 71, 71);
+  padding: 15px;
+  border-radius: 8px; /* Adicionado um leve arredondamento para ergonomia visual */
+  color: white; /* Contraste com o fundo verde */
+}
+
+.icon {
+  background-color: rgba(255, 255, 255, 0.2); /* Destaque visual sutil para o ícone */
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.mns {
+   line-height: 1.4;
+}
