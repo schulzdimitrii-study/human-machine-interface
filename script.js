@@ -1,26 +1,28 @@
 function openMenu() {
-  document.getElementById("menu_aba").style.display = "block";  
+  document.getElementById("menu_aba").style.left = "0";  
 }
 
 function closeMenu() {
-  document.getElementById("menu_aba").style.display = "none";    
+  document.getElementById("menu_aba").style.left = "-320px";    
 }
 
-function temaLim() {
-    document.documentElement.style.setProperty('--cor-click', '#38184C');
-    document.documentElement.style.setProperty('--cor-sombra', '#9b0a59');
-    document.documentElement.style.setProperty('--cor-text', 'black');
-    document.documentElement.style.setProperty('--cor-back1', '#CEF09D');
-    document.documentElement.style.setProperty('--cor-back2', '#4f6a93');
-    document.documentElement.style.setProperty('--md-sys-color-primary', '#38184C');
-}
+document.addEventListener('click', function(event) {
+    const menu = document.getElementById('menu_aba');
+    const hamburger = document.getElementById('menu');
+
+    if (menu.style.left === '0px') {
+        if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+            closeMenu();
+        }
+    }
+});
 
 function temaInatel() {
     document.documentElement.style.setProperty('--cor-click', '#126ae2');
     document.documentElement.style.setProperty('--cor-sombra', '#0a599b');
     document.documentElement.style.setProperty('--cor-text', 'black');
     document.documentElement.style.setProperty('--cor-back1', '#edf2f4');
-    document.documentElement.style.setProperty('--cor-back2', '#6a937a');
+    document.documentElement.style.setProperty('--cor-back2', '#6a8293');
     document.documentElement.style.setProperty('--md-sys-color-primary', '#126ae2');
 }
 
@@ -28,9 +30,9 @@ function temaDark() {
     const cores = {
         '--cor-click': '#126ae2',
         '--cor-sombra': '#9b0a59',
-        '--cor-text': 'black',
+        '--cor-text': 'white',
         '--cor-back1': '#2b2b2b',
-        '--cor-back2': '#4f6a93',
+        '--cor-back2': '#3e3e3e',
         '--md-sys-color-primary': '#126ae2'
     };
 
