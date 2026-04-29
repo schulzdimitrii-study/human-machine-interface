@@ -101,3 +101,24 @@ function createCards() {
 }
 
 createCards();
+
+
+let index = 0;
+
+function nextCard() {
+    index = (index + 1) % eventos.length;
+    updateCarousel();
+}
+
+function prevCard() {
+    index = (index - 1 + eventos.length) % eventos.length;
+    updateCarousel();
+}
+
+function updateCarousel() {
+    const offset = -index * 100;
+    carousel.style.transform = `translateX(${offset}%)`;
+}
+
+document.getElementById('nextBtn').addEventListener('click', nextCard);
+document.getElementById('prevBtn').addEventListener('click', prevCard);
