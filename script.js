@@ -26,12 +26,12 @@ function temaInatel() {
 
 function temaDark() {
     const cores = {
-        '--cor-click': '#CEF09D',
+        '--cor-click': '#126ae2',
         '--cor-sombra': '#9b0a59',
         '--cor-text': 'black',
-        '--cor-back1': '#38184C',
+        '--cor-back1': '#2b2b2b',
         '--cor-back2': '#4f6a93',
-        '--md-sys-color-primary': '#CEF09D'
+        '--md-sys-color-primary': '#126ae2'
     };
 
     for (const [variavel, valor] of Object.entries(cores)) {
