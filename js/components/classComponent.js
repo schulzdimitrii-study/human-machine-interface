@@ -22,29 +22,25 @@ class ClassComponent extends HTMLElement {
   render(classes) {
     const dayClasses = classes.filter(a => a.data === this.hoje);
 
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'css/classComponent.css';
-    this.shadowRoot.appendChild(link);
+    this.shadowRoot.innerHTML = `
+      <link rel="stylesheet" href="css/classComponent.css">
+      <div>
+        ${dayClasses.map(a => {
+          const examDisplay = a.prova_alert ? '' : 'display: none;';
+          const gradeColor = Number(a.nota) < 6 ? 'red' : Number(a.nota) < 8 ? 'orange' : 'green';
 
-    this.shadowRoot.innerHTML += `
-        <div>
-          ${dayClasses.map(a => {
-      const examDisplay = a.prova_alert ? '' : 'display: none;';
-      const gradeColor = Number(a.nota) < 6 ? 'red' : Number(a.nota) < 8 ? 'orange' : 'green';
-
-      return `
-              <div class="comp-aula">
-                <div class="lable-prova p_lable" style="${examDisplay}">PROVA: <b>${a.prova}</b></div>
-                <div class="titulo_aula">${a.disciplina}</div>
-                <p class="p">Local e Horário: <b>${a.local} - ${a.horario}</b></p>
-                <div class="lables">
-                  <div class="lable-frequencia p_lable">FALTAS: <b>${a.frequencia}</b></div>
-                  <div class="lable-nota p_lable" style="background-color: ${gradeColor}">CR: <b>${a.nota}</b></div>
-                </div>
+          return `
+            <div class="comp-aula">
+              <div class="lable-prova p_lable" style="${examDisplay}">PROVA: <b>${a.prova}</b></div>
+              <div class="titulo_aula">${a.disciplina}</div>
+              <p class="p">Local e Horário: <b>${a.local} - ${a.horario}</b></p>
+              <div class="lables">
+                <div class="lable-frequencia p_lable">FALTAS: <b>${a.frequencia}</b></div>
+                <div class="lable-nota p_lable" style="background-color: ${gradeColor}">CR: <b>${a.nota}</b></div>
               </div>
-            `;
-    }).join('')}
+            </div>
+          `;
+        }).join('')}
       </div>
     `;
   }
