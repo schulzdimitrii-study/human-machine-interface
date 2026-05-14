@@ -30,21 +30,23 @@ class ClassComponent extends HTMLElement {
     this.shadowRoot.innerHTML += `
         <div>
           ${dayClasses.map(a => {
-      let provaDisplay = a.prova_alert ? '' : 'display: none;';
+      const examDisplay = a.prova_alert ? '' : 'display: none;';
+      const gradeColor = a.nota < 6 ? 'red' : a.nota < 8 ? 'orange' : 'green';
+
       return `
               <div class="comp-aula">
-                <div class="lable-prova p_lable" style="${provaDisplay}">PROVA: <b>${a.prova}</b></div>
+                <div class="lable-prova p_lable" style="${examDisplay}">PROVA: <b>${a.prova}</b></div>
                 <div class="titulo_aula">${a.disciplina}</div>
                 <p class="p">Local e Horário: <b>${a.local} - ${a.horario}</b></p>
                 <div class="lables">
                   <div class="lable-frequencia p_lable">FALTAS: <b>${a.frequencia}</b></div>
-                  <div class="lable-nota p_lable">CR: <b>${a.nota}</b></div>
+                  <div class="lable-nota p_lable" style="background-color: ${gradeColor}">CR: <b>${a.nota}</b></div>
                 </div>
               </div>
             `;
     }).join('')}
-        </div>
-      `;
+      </div>
+    `;
   }
 }
 
