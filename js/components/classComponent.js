@@ -31,7 +31,7 @@ class ClassComponent extends HTMLElement {
         <div>
           ${dayClasses.map(a => {
       const examDisplay = a.prova_alert ? '' : 'display: none;';
-      const gradeColor = a.nota < 6 ? 'red' : a.nota < 8 ? 'orange' : 'green';
+      const gradeColor = Number(a.nota) < 6 ? 'red' : Number(a.nota) < 8 ? 'orange' : 'green';
 
       return `
               <div class="comp-aula">
