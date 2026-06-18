@@ -1,27 +1,27 @@
 :root {
-  --cor-click: #126ae2;
+  --click-color: #126ae2;
   /* Click */
-  --cor-sombra: #0a599b;
+  --shadow-color: #0a599b;
   /* Azul Escuro */
-  --cor-text: black;
+  --text-color: black;
   /* Preto */
-  --cor-back1: #edf2f4;
+  --bg-color-1: #edf2f4;
   /* Azul claro */
-  --cor-back2: rgb(212, 237, 255);
+  --bg-color-2: rgb(212, 237, 255);
 
   --md-sys-color-primary: #126ae2;
   --md-sys-color-on-primary: #FFFFFF;
   --md-sys-color-primary-container: #edf2f4;
   --md-sys-color-on-primary-container: #002020;
 
-  --frequencia: #126ae2;
-  --nota: #126ae2;
-  --prova: #126ae2;
+  --attendance: #126ae2;
+  --grade: #126ae2;
+  --exam: #126ae2;
 }
 
 body {
   margin: 0px;
-  background-color: var(--cor-back1);
+  background-color: var(--bg-color-1);
   font-family: "Arimo", sans-serif;
 }
 
@@ -46,15 +46,15 @@ header {
 }
 
 .path_logo {
-  fill: var(--cor-click);
+  fill: var(--click-color);
 }
 
 main {
   padding: 10px;
 }
 
-#mensagens {
-  background-color: var(--cor-back2);
+#messages {
+  background-color: var(--bg-color-2);
   padding: 20px;
   margin: 10px 20px 20px 20px;
   border-radius: 10px;
@@ -68,7 +68,7 @@ main {
   font-weight: bold;
 }
 
-.mns_box {
+.msg-box {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -80,12 +80,12 @@ main {
   justify-content: center;
 }
 
-.mns {
+.msg {
   line-height: 1.4;
 }
 
 .material-symbols-outlined {
-  color: var(--cor-click);
+  color: var(--click-color);
   font-variation-settings:
     'FILL' 0,
     'wght' 400,
@@ -107,16 +107,16 @@ main {
   font-weight: normal;
   font-style: normal;
   font-size: 14px;
-  color: var(--cor-text)
+  color: var(--text-color)
 }
 
-#menu_aba {
+#side_menu {
   height: 100vh;
   width: 300px;
   position: fixed;
   top: 0;
   left: -320px;
-  background-color: var(--cor-back1, #edf2f4);
+  background-color: var(--bg-color-1, #edf2f4);
   box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.3);
   overflow-x: hidden;
   transition: left 0.8s ease;
@@ -124,7 +124,7 @@ main {
   border-radius: 10px;
 }
 
-#menu_aba .font {
+#side_menu .font {
   position: 0;
   margin-left: 30px;
   margin-top: 20px;
@@ -133,10 +133,10 @@ main {
   font-weight: bold;
   font-style: normal;
   font-size: 14pt;
-  color: var(--cor-text);
+  color: var(--text-color);
 }
 
-#menu_bot {
+.menu-btn {
   position: relative;
   padding: 20px;
   display: block;
@@ -146,11 +146,11 @@ main {
   font-weight: bold;
   font-style: normal;
   font-size: 14pt;
-  color: var(--cor-click);
+  color: var(--click-color);
   transition: 0.5s;
 }
 
-.btn_fechar {
+.close-btn {
   position: absolute;
   top: 30px;
   right: 15px;
@@ -158,7 +158,7 @@ main {
   border: none;
   font-size: 20px;
   cursor: pointer;
-  color: var(--cor-text);
+  color: var(--text-color);
 }
 
 h3 {
@@ -167,7 +167,7 @@ h3 {
   font-weight: bold;
   font-style: normal;
   font-size: 14px;
-  color: var(--cor-text);
+  color: var(--text-color);
   padding-left: 5px;
   padding-right: 5px
 }
@@ -178,7 +178,7 @@ p {
   font-weight: normal;
   font-style: normal;
   font-size: 11px;
-  color: var(--cor-text);
+  color: var(--text-color);
   line-height: 1.5;
   orphans: 3;
   padding-left: 5px;
@@ -188,7 +188,7 @@ p {
 .carousel-container {
   position: relative;
   overflow: hidden;
-  background-color: var(--cor-back2);
+  background-color: var(--bg-color-2);
   border-radius: 10px;
   margin: 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);

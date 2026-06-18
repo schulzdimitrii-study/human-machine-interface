@@ -2,7 +2,7 @@ class ClassComponent extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this.hoje = "ter";
+    this.today = "ter";
   }
 
   connectedCallback() {
@@ -20,7 +20,7 @@ class ClassComponent extends HTMLElement {
   }
 
   render(classes) {
-    const dayClasses = classes.filter(a => a.data === this.hoje);
+    const dayClasses = classes.filter(a => a.data === this.today);
 
     this.shadowRoot.innerHTML = `
       <link rel="stylesheet" href="css/classComponent.css">
@@ -30,13 +30,13 @@ class ClassComponent extends HTMLElement {
           const gradeColor = Number(a.nota) < 6 ? 'red' : Number(a.nota) < 8 ? 'orange' : 'green';
 
           return `
-            <div class="comp-aula">
-              <div class="lable-prova p_lable" style="${examDisplay}">PROVA: <b>${a.prova}</b></div>
-              <div class="titulo_aula">${a.disciplina}</div>
+            <div class="class-card">
+              <div class="exam-label p-label" style="${examDisplay}">PROVA: <b>${a.prova}</b></div>
+              <div class="class-title">${a.disciplina}</div>
               <p class="p">Local e Horário: <b>${a.local} - ${a.horario}</b></p>
-              <div class="lables">
-                <div class="lable-frequencia p_lable">FALTAS: <b>${a.frequencia}</b></div>
-                <div class="lable-nota p_lable" style="background-color: ${gradeColor}">CR: <b>${a.nota}</b></div>
+              <div class="labels">
+                <div class="attendance-label p-label">FALTAS: <b>${a.frequencia}</b></div>
+                <div class="grade-label p-label" style="background-color: ${gradeColor}">CR: <b>${a.nota}</b></div>
               </div>
             </div>
           `;

@@ -1,10 +1,10 @@
 :root {
-    --frequencia: #126ae2;
-    --nota: #126ae2;
-    --prova: #126ae2;
+    --attendance: #126ae2;
+    --grade: #126ae2;
+    --exam: #126ae2;
 }
 
-.titulo_aula {
+.class-title {
     font-weight: bold;
     font-size: 15px;
     padding: 0 5px;
@@ -13,14 +13,14 @@
     text-overflow: ellipsis;
 }
 
-.lables {
+.labels {
     display: flex;
 }
 
-.lable-prova,
-.lable-frequencia,
-.lable-nota {
-    background-color: var(--prova);
+.exam-label,
+.attendance-label,
+.grade-label {
+    background-color: var(--exam);
     padding: 7px 15px;
     margin-bottom: 10px;
     border-radius: 500px;
@@ -28,15 +28,15 @@
     margin-right: 10px;
 }
 
-.lable-frequencia {
-    background-color: var(--frequencia);
+.attendance-label {
+    background-color: var(--attendance);
 }
 
-.lable-nota {
-    background-color: var(--nota);
+.grade-label {
+    background-color: var(--grade);
 }
 
-.p_lable {
+.p-label {
     font-size: 13px;
     color: white;
     white-space: nowrap;
@@ -44,8 +44,8 @@
     text-overflow: ellipsis;
 }
 
-.comp-aula {
-    background-color: var(--cor-back2);
+.class-card {
+    background-color: var(--bg-color-2);
     padding: 20px;
     margin: 10px 20px 20px 20px;
     border-radius: 10px;

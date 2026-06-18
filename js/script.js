@@ -1,13 +1,13 @@
 function openMenu() {
-    document.getElementById("menu_aba").style.left = "0";
+    document.getElementById("side_menu").style.left = "0";
 }
 
 function closeMenu() {
-    document.getElementById("menu_aba").style.left = "-320px";
+    document.getElementById("side_menu").style.left = "-320px";
 }
 
 document.addEventListener('click', function (event) {
-    const menu = document.getElementById('menu_aba');
+    const menu = document.getElementById('side_menu');
     const hamburger = document.getElementById('menu');
 
     if (menu.style.left === '0px') {
@@ -17,37 +17,37 @@ document.addEventListener('click', function (event) {
     }
 });
 
-function temaInatel() {
-    const cores = {
-        '--cor-click': '#126ae2',
-        '--cor-sombra': '#0a599b',
-        '--cor-text': 'black',
-        '--cor-back1': '#edf2f4',
-        '--cor-back2': 'white',
+function inatelTheme() {
+    const colors = {
+        '--click-color': '#126ae2',
+        '--shadow-color': '#0a599b',
+        '--text-color': 'black',
+        '--bg-color-1': '#edf2f4',
+        '--bg-color-2': 'white',
         '--md-sys-color-primary': '#126ae2'
     };
 
-    for (const [variavel, valor] of Object.entries(cores)) {
-        document.documentElement.style.setProperty(variavel, valor);
+    for (const [variable, value] of Object.entries(colors)) {
+        document.documentElement.style.setProperty(variable, value);
     }
 }
 
-function temaDark() {
-    const cores = {
-        '--cor-click': '#126ae2',
-        '--cor-sombra': '#9b0a59',
-        '--cor-text': 'white',
-        '--cor-back1': '#2b2b2b',
-        '--cor-back2': '#3e3e3e',
+function darkTheme() {
+    const colors = {
+        '--click-color': '#126ae2',
+        '--shadow-color': '#9b0a59',
+        '--text-color': 'white',
+        '--bg-color-1': '#2b2b2b',
+        '--bg-color-2': '#3e3e3e',
         '--md-sys-color-primary': '#126ae2'
     };
 
-    for (const [variavel, valor] of Object.entries(cores)) {
-        document.documentElement.style.setProperty(variavel, valor);
+    for (const [variable, value] of Object.entries(colors)) {
+        document.documentElement.style.setProperty(variable, value);
     }
 }
 
-const eventos = [
+const events = [
     {
         id: 1,
         title: 'Semana do Software 2025',
@@ -93,7 +93,7 @@ const eventos = [
 const carousel = document.querySelector('.carousel');
 
 function createCards() {
-    eventos.forEach(event => {
+    events.forEach(event => {
         const card = document.createElement('div');
         card.classList.add('card');
         card.innerHTML = `
@@ -114,12 +114,12 @@ createCards();
 let index = 0;
 
 function nextCard() {
-    index = (index + 1) % eventos.length;
+    index = (index + 1) % events.length;
     updateCarousel();
 }
 
 function prevCard() {
-    index = (index - 1 + eventos.length) % eventos.length;
+    index = (index - 1 + events.length) % events.length;
     updateCarousel();
 }
 
@@ -131,4 +131,4 @@ function updateCarousel() {
 document.getElementById('nextBtn').addEventListener('click', nextCard);
 document.getElementById('prevBtn').addEventListener('click', prevCard);
 
-temaInatel();
+inatelTheme();

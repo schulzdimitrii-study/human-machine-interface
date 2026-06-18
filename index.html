@@ -25,11 +25,11 @@
 </head>
 
 <body>
-  <nav id="menu_aba">
+  <nav id="side_menu">
     <h2 class="font">Menu</h2>
-    <button class="btn_fechar" onclick="closeMenu()">X</button>
-    <div id="menu_bot" onclick="closeMenu(), temaInatel()">Tema Inatel</div>
-    <div id="menu_bot" onclick="closeMenu(), temaDark()">Tema Dark</div>
+    <button class="close-btn" onclick="closeMenu()">X</button>
+    <div class="menu-btn" onclick="closeMenu(), inatelTheme()">Tema Inatel</div>
+    <div class="menu-btn" onclick="closeMenu(), darkTheme()">Tema Dark</div>
   </nav>
 
   <header id="head">
@@ -45,24 +45,24 @@
       </svg>
     </div>
 
-    <div id="perfil"><span class="material-symbols-outlined icoG">Person</span></div>
+    <div id="profile"><span class="material-symbols-outlined icoG">Person</span></div>
   </header>
 
   <main>
-    <div id="mensagens">
+    <div id="messages">
       <div id="user_name" class="font">Olá Raphael!</div>
 
-      <div class="mns_box">
+      <div class="msg-box">
         <div class="icon"><span class="material-symbols-outlined icoP">notifications_active</span></div>
-        <div class="mns font">Você possui um armário reservado com entrega para hoje...</div>
+        <div class="msg font">Você possui um armário reservado com entrega para hoje...</div>
       </div>
 
-      <div class="mns_box">
+      <div class="msg-box">
         <div class="icon"><span class="material-symbols-outlined icoP">mail</span></div>
-        <div class="mns font">Você possui uma pendência no financeiro...</div>
+        <div class="msg font">Você possui uma pendência no financeiro...</div>
       </div>
     </div>
-    <class-component id="componente"></class-component>
+    <class-component id="component"></class-component>
     <div class="carousel-container">
       <div class="carousel">
       </div>
