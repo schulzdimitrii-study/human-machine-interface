@@ -99,3 +99,129 @@ tailwind.config = {
     },
   },
 };
+
+const jobs = [
+  {
+    id: 1,
+    title: 'Estágio em Desenvolvimento Backend',
+    company: 'Empresa XYZ',
+    location: 'Santa Rita do Sapucaí (Presencial)',
+    compensation: 'A combinar',
+    badge: 'Novo',
+    badgeType: 'new',
+    isBookmarked: false,
+    highlight: true,
+    actionType: 'active'
+  },
+  {
+    id: 2,
+    title: 'Estágio em Banco de Dados',
+    company: 'Tech Solutions S.A.',
+    location: 'São Paulo, SP (Híbrido)',
+    compensation: 'R$ 1.500,00',
+    badge: 'Urgente',
+    badgeType: 'urgent',
+    isBookmarked: true,
+    highlight: false,
+    actionType: 'active'
+  },
+  {
+    id: 3,
+    title: 'Analista de Sistemas Trainee',
+    company: 'Inova Tech',
+    location: 'Remoto',
+    compensation: 'Bolsa + Benefícios',
+    badge: 'Inscrito',
+    badgeType: 'applied',
+    isBookmarked: false,
+    highlight: false,
+    actionType: 'disabled'
+  }
+];
+
+function renderJobs() {
+  const grid = document.getElementById('job-listings-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  jobs.forEach(job => {
+    const card = document.createElement('article');
+    card.className = 'bg-pure-white border border-surface-variant rounded-xl p-6 flex flex-col gap-stack-md ambient-shadow-sm hover:ambient-shadow-md transition-shadow relative overflow-hidden group';
+
+    const highlightBar = job.highlight 
+      ? '<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>' 
+      : '';
+
+    const bookmarkIcon = job.isBookmarked
+      ? '<span class="material-symbols-outlined text-primary" style="font-variation-settings: \'FILL\' 1;">bookmark</span>'
+      : '<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">bookmark_border</span>';
+
+    let badgeClass = '';
+    if (job.badgeType === 'new') {
+      badgeClass = 'bg-surface-container text-on-surface-variant';
+    } else if (job.badgeType === 'urgent') {
+      badgeClass = 'border border-outline text-outline';
+    } else if (job.badgeType === 'applied') {
+      badgeClass = 'bg-deep-navy text-pure-white';
+    }
+    const badgeHtml = job.badge 
+      ? `<span class="inline-flex items-center px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider ${badgeClass}">${job.badge}</span>`
+      : '';
+
+    let buttonHtml = '';
+    if (job.actionType === 'active') {
+      buttonHtml = `
+        <button class="px-4 py-2 border border-inatel-blue text-inatel-blue bg-pure-white hover:bg-surface-container-low rounded font-label-md text-label-md transition-colors flex items-center gap-1">
+          Ver Vaga <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </button>
+      `;
+    } else {
+      buttonHtml = `
+        <button class="px-4 py-2 bg-surface-container text-on-surface-variant rounded font-label-md text-label-md transition-colors flex items-center gap-1 opacity-70 cursor-not-allowed">
+          Detalhes
+        </button>
+      `;
+    }
+
+    card.innerHTML = `
+      ${highlightBar}
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-headline-sm font-headline-sm text-on-surface mb-1 pr-8">${job.title}</h3>
+          <p class="text-body-md font-body-md text-on-surface-variant">${job.company}</p>
+        </div>
+        <button class="focus:outline-none" onclick="toggleBookmark(${job.id})">
+          ${bookmarkIcon}
+        </button>
+      </div>
+      <div class="flex flex-col gap-2 mt-2">
+        <div class="flex items-center gap-2 text-on-surface-variant text-body-sm font-body-sm">
+          <span class="material-symbols-outlined text-[18px]">location_on</span>
+          <span>${job.location}</span>
+        </div>
+        <div class="flex items-center gap-2 text-on-surface-variant text-body-sm font-body-sm">
+          <span class="material-symbols-outlined text-[18px]">${job.compensation.includes('R$') ? 'payments' : 'schedule'}</span>
+          <span>${job.compensation}</span>
+        </div>
+      </div>
+      <div class="mt-auto pt-4 flex justify-between items-center">
+        <div class="flex gap-2">
+          ${badgeHtml}
+        </div>
+        ${buttonHtml}
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+function toggleBookmark(jobId) {
+  const job = jobs.find(j => j.id === jobId);
+  if (job) {
+    job.isBookmarked = !job.isBookmarked;
+    renderJobs();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', renderJobs);
