@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Detalhes da Vaga - Inatel Vagas</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/jobDetails.css" />
+    <script src="../js/jobOpenings.js"></script>
+    <script src="../js/components/headerComponent.js"></script>
+    <script src="../js/jobDetails.js"></script>
+</head>
+
+<body class="antialiased min-h-screen flex flex-col">
+    <div class="flex-1 flex flex-col min-h-screen">
+        <header-component type="subpage-details" back-link="jobOpenings.html"
+            job-title="Carregando vaga..."></header-component>
+
+        <main
+            class="flex-1 w-full max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg pb-32 md:pb-12">
+            <div id="details-container" class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+                <!-- Left Main Column -->
+                <div class="lg:col-span-2 flex flex-col gap-gutter">
+                    <!-- Job Overview Card -->
+                    <section class="bento-card relative overflow-hidden flex flex-col gap-4">
+                        <div class="absolute top-0 left-0 w-1.5 h-full bg-primary"></div>
+
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h2 id="job-title" class="text-headline-md font-headline-md text-on-surface mb-1">
+                                    Carregando...</h2>
+                                <p id="job-company"
+                                    class="text-body-lg font-body-lg text-on-surface-variant font-semibold">
+                                    Carregando...</p>
+                            </div>
+                            <div id="job-badge-container"></div>
+                        </div>
+
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-b border-surface-variant/50 py-4 my-2">
+                            <div class="flex items-center gap-2 text-on-surface-variant text-body-md">
+                                <span class="material-symbols-outlined text-[20px]">location_on</span>
+                                <span id="job-location">Carregando...</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-on-surface-variant text-body-md">
+                                <span class="material-symbols-outlined text-[20px]">schedule</span>
+                                <span id="job-hours">Carregando...</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-on-surface-variant text-body-md">
+                                <span class="material-symbols-outlined text-[20px]">payments</span>
+                                <span id="job-salary">Carregando...</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-headline-sm font-headline-sm text-on-surface mb-2">Descrição da Vaga</h3>
+                            <p id="job-description" class="text-body-md text-on-surface-variant leading-relaxed">
+                                Carregando...</p>
+                        </div>
+                    </section>
+
+                    <!-- Requirements Card -->
+                    <section class="bento-card">
+                        <h3 class="text-headline-sm font-headline-sm text-on-surface mb-4">Requisitos</h3>
+                        <ul id="job-requirements" class="detail-list"></ul>
+                    </section>
+
+                    <!-- Benefits Card -->
+                    <section class="bento-card">
+                        <h3 class="text-headline-sm font-headline-sm text-on-surface mb-4">Benefícios</h3>
+                        <ul id="job-benefits" class="detail-list">
+                            <!-- Dynamic items -->
+                        </ul>
+                    </section>
+                </div>
+
+                <!-- Right Sidebar Column -->
+                <div class="flex flex-col gap-gutter">
+                    <!-- Process Status Card -->
+                    <section class="bento-card flex flex-col gap-4">
+                        <h3 class="text-headline-sm font-headline-sm text-on-surface">Status da Vaga</h3>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-center text-body-md">
+                                <span id="status-text" class="font-semibold text-on-surface-variant">Status do Processo:
+                                    Aberta</span>
+                            </div>
+                            <div class="progress-bar-container mt-1">
+                                <div id="status-progress" class="progress-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full mt-2 py-3 bg-inatel-blue text-pure-white rounded-lg font-label-lg shadow-sm hover:bg-primary transition-colors apply-job-btn flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">send</span>
+                            Candidatar-se à Vaga
+                        </button>
+                    </section>
+
+                    <!-- About Company & Map Card -->
+                    <section class="bento-card flex flex-col gap-4">
+                        <h3 class="text-headline-sm font-headline-sm text-on-surface">Sobre a Empresa</h3>
+                        <p id="about-company" class="text-body-sm text-on-surface-variant leading-relaxed">Carregando...
+                        </p>
+
+                        <div class="company-map-container mt-2">
+                            <div class="map-placeholder bg-surface-container flex items-center justify-center">
+                                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                                    style="background-color: #e5e9f0;">
+                                    <defs>
+                                        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                                            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#d1d9e6" stroke-width="1" />
+                                        </pattern>
+                                    </defs>
+                                    <rect width="100%" height="100%" fill="url(#grid)" />
+                                    <circle cx="120" cy="90" r="40" fill="#126ae2" fill-opacity="0.1" stroke="#126ae2"
+                                        stroke-width="1.5" stroke-dasharray="4 2" />
+                                    <path d="M50 150 Q 100 80 200 120 T 300 50" fill="none" stroke="#126ae2"
+                                        stroke-width="2" stroke-opacity="0.4" />
+                                    <circle cx="200" cy="120" r="6" fill="#126ae2" />
+                                    <circle cx="200" cy="120" r="12" fill="none" stroke="#126ae2" stroke-width="2">
+                                        <animate attributeName="r" values="6;18;6" dur="3s" repeatCount="indefinite" />
+                                        <animate attributeName="opacity" values="1;0;1" dur="3s"
+                                            repeatCount="indefinite" />
+                                    </circle>
+                                </svg>
+                            </div>
+                            <div class="map-overlay">
+                                <div class="flex items-center gap-1">
+                                    <span
+                                        class="material-symbols-outlined text-[16px] text-pure-white font-variation-settings-fill">location_on</span>
+                                    <span class="text-[12px] font-semibold text-pure-white">Carregando...</span>
+                                </div>
+                                <a href="https://maps.google.com" target="_blank"
+                                    class="text-[11px] text-[#8bd5bf] hover:underline">Ver no Maps</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Bottom Action Bar (Mobile Only) -->
+    <div class="mobile-action-bar flex md:hidden items-center gap-3">
+        <button onclick="toggleJobBookmark()"
+            class="flex-1 flex items-center justify-center gap-2 py-3 border border-outline bg-pure-white text-primary rounded-lg font-label-md text-label-md">
+            <span id="mobile-save-icon" class="material-symbols-outlined"
+                style="font-size: 20px;">bookmark_border</span>
+            <span id="mobile-save-text">Salvar</span>
+        </button>
+        <button
+            class="flex-[2] flex items-center justify-center gap-2 py-3 bg-inatel-blue text-pure-white rounded-lg font-label-md text-label-md shadow-sm apply-job-btn">
+            <span class="material-symbols-outlined" style="font-size: 20px;">send</span>
+            Candidatar-se
+        </button>
+    </div>
+</body>
+
+</html>

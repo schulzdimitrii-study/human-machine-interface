@@ -1,0 +1,95 @@
+[
+  {
+    "id": 1,
+    "title": "Estágio em Desenvolvimento Backend",
+    "company": "Empresa XYZ",
+    "location": "Santa Rita do Sapucaí (Presencial)",
+    "location_full": "Santa Rita do Sapucaí, MG",
+    "compensation": "A combinar",
+    "salary": "A combinar",
+    "hours": "30h/semana",
+    "type": "Estágio",
+    "badge": "Novo",
+    "badgeType": "new",
+    "highlight": true,
+    "actionType": "active",
+    "description": "Estamos em busca de um estagiário proativo e apaixonado por tecnologia para integrar nossa equipe de desenvolvimento backend. O candidato auxiliará na criação e manutenção de APIs RESTful, integração com bancos de dados relacionais e não relacionais, e na otimização da performance dos nossos sistemas core.",
+    "requirements": [
+      "Conhecimento básico em Python ou Node.js",
+      "Familiaridade com lógica de programação",
+      "Noções de SQL (MySQL ou PostgreSQL)",
+      "Estar cursando a partir do 4º período"
+    ],
+    "benefits": [
+      "Bolsa auxílio compatível",
+      "Vale Alimentação/Refeição",
+      "Auxílio Transporte",
+      "Equipamento fornecido (Notebook)"
+    ],
+    "about_company": "A Empresa XYZ é líder em soluções de software para o setor de telecomunicações. Focada em inovação e alta performance, oferecemos um ambiente dinâmico e de aprendizado contínuo para jovens talentos.",
+    "status": "Aberta",
+    "status_percent": 100
+  },
+  {
+    "id": 2,
+    "title": "Estágio em Banco de Dados",
+    "company": "Tech Solutions S.A.",
+    "location": "São Paulo, SP (Híbrido)",
+    "location_full": "São Paulo, SP",
+    "compensation": "R$ 1.500,00",
+    "salary": "R$ 1.500,00",
+    "hours": "30h/semana",
+    "type": "Estágio",
+    "badge": "Urgente",
+    "badgeType": "urgent",
+    "highlight": false,
+    "actionType": "active",
+    "description": "Buscamos estudante para auxiliar na modelagem, otimização e manutenção de bancos de dados relacionais. Apoiará na criação de queries, monitoramento de backups e suporte à equipe de BI.",
+    "requirements": [
+      "Noções de modelagem de dados",
+      "Conhecimento prático de SQL",
+      "Conhecimento de PostgreSQL ou SQL Server",
+      "Diferencial: noções de NoSQL"
+    ],
+    "benefits": [
+      "Bolsa auxílio de R$ 1.500,00",
+      "Vale Refeição",
+      "Seguro de Vida",
+      "Flexibilidade de horário"
+    ],
+    "about_company": "A Tech Solutions é focada em soluções de dados de alta escala para o mercado financeiro corporativo. Oferecemos oportunidades em projetos desafiadores com foco em crescimento profissional rápido.",
+    "status": "Aberta",
+    "status_percent": 75
+  },
+  {
+    "id": 3,
+    "title": "Analista de Sistemas Trainee",
+    "company": "Inova Tech",
+    "location": "Remoto",
+    "location_full": "Remoto, Brasil",
+    "compensation": "Bolsa + Benefícios",
+    "salary": "Bolsa + Benefícios",
+    "hours": "40h/semana",
+    "type": "Trainee",
+    "badge": "Inscrito",
+    "badgeType": "applied",
+    "highlight": false,
+    "actionType": "disabled",
+    "description": "Oportunidade para recém-formados em Engenharia ou Ciências da Computação. O profissional atuará no levantamento de requisitos, arquitetura de sistemas e interface entre cliente e time de desenvolvimento.",
+    "requirements": [
+      "Superior completo ou no último período em Engenharia/Computação",
+      "Inglês intermediário",
+      "Excelente comunicação interpessoal",
+      "Conhecimento de metodologias ágeis"
+    ],
+    "benefits": [
+      "Salário competitivo",
+      "Plano de Saúde e Odontológico",
+      "Participação nos lucros (PLR)",
+      "Auxílio Home Office"
+    ],
+    "about_company": "A Inova Tech desenvolve plataformas SaaS focadas em logística e e-commerce de alto impacto, provendo soluções tecnológicas modernas no cenário nacional.",
+    "status": "Fechada",
+    "status_percent": 100
+  }
+]

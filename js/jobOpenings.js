@@ -100,44 +100,39 @@ tailwind.config = {
   },
 };
 
-const jobs = [
-  {
-    id: 1,
-    title: 'Estágio em Desenvolvimento Backend',
-    company: 'Empresa XYZ',
-    location: 'Santa Rita do Sapucaí (Presencial)',
-    compensation: 'A combinar',
-    badge: 'Novo',
-    badgeType: 'new',
-    isBookmarked: false,
-    highlight: true,
-    actionType: 'active'
-  },
-  {
-    id: 2,
-    title: 'Estágio em Banco de Dados',
-    company: 'Tech Solutions S.A.',
-    location: 'São Paulo, SP (Híbrido)',
-    compensation: 'R$ 1.500,00',
-    badge: 'Urgente',
-    badgeType: 'urgent',
-    isBookmarked: true,
-    highlight: false,
-    actionType: 'active'
-  },
-  {
-    id: 3,
-    title: 'Analista de Sistemas Trainee',
-    company: 'Inova Tech',
-    location: 'Remoto',
-    compensation: 'Bolsa + Benefícios',
-    badge: 'Inscrito',
-    badgeType: 'applied',
-    isBookmarked: false,
-    highlight: false,
-    actionType: 'disabled'
+let jobs = [];
+
+function getBookmarks() {
+  const stored = localStorage.getItem('job_bookmarks');
+  return stored ? JSON.parse(stored) : {};
+}
+
+function setBookmark(jobId, isBookmarked) {
+  const bookmarks = getBookmarks();
+  bookmarks[jobId] = isBookmarked;
+  localStorage.setItem('job_bookmarks', JSON.stringify(bookmarks));
+}
+
+async function loadJobs() {
+  try {
+    const response = await fetch('../jobs.json');
+    jobs = await response.json();
+    
+    const bookmarks = getBookmarks();
+    jobs.forEach(job => {
+      if (bookmarks[job.id] !== undefined) {
+        job.isBookmarked = bookmarks[job.id];
+      } else {
+        bookmarks[job.id] = !!job.isBookmarked;
+      }
+    });
+    localStorage.setItem('job_bookmarks', JSON.stringify(bookmarks));
+    renderJobs();
+  } catch (error) {
+    console.error('Error loading jobs:', error);
   }
-];
+}
+
 
 function renderJobs() {
   const grid = document.getElementById('job-listings-grid');
@@ -148,8 +143,8 @@ function renderJobs() {
     const card = document.createElement('article');
     card.className = 'bg-pure-white border border-surface-variant rounded-xl p-6 flex flex-col gap-stack-md ambient-shadow-sm hover:ambient-shadow-md transition-shadow relative overflow-hidden group';
 
-    const highlightBar = job.highlight 
-      ? '<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>' 
+    const highlightBar = job.highlight
+      ? '<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>'
       : '';
 
     const bookmarkIcon = job.isBookmarked
@@ -164,14 +159,14 @@ function renderJobs() {
     } else if (job.badgeType === 'applied') {
       badgeClass = 'bg-deep-navy text-pure-white';
     }
-    const badgeHtml = job.badge 
+    const badgeHtml = job.badge
       ? `<span class="inline-flex items-center px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider ${badgeClass}">${job.badge}</span>`
       : '';
 
     let buttonHtml = '';
     if (job.actionType === 'active') {
       buttonHtml = `
-        <button class="px-4 py-2 border border-inatel-blue text-inatel-blue bg-pure-white hover:bg-surface-container-low rounded font-label-md text-label-md transition-colors flex items-center gap-1">
+        <button onclick="window.location.href='jobDetails.html?id=${job.id}'" class="px-4 py-2 border border-inatel-blue text-inatel-blue bg-pure-white hover:bg-surface-container-low rounded font-label-md text-label-md transition-colors flex items-center gap-1">
           Ver Vaga <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
         </button>
       `;
@@ -220,8 +215,9 @@ function toggleBookmark(jobId) {
   const job = jobs.find(j => j.id === jobId);
   if (job) {
     job.isBookmarked = !job.isBookmarked;
+    setBookmark(jobId, job.isBookmarked);
     renderJobs();
   }
 }
 
-document.addEventListener('DOMContentLoaded', renderJobs);
+document.addEventListener('DOMContentLoaded', loadJobs);
