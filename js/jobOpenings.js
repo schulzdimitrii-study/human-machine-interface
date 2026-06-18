@@ -141,11 +141,9 @@ function renderJobs() {
 
   jobs.forEach(job => {
     const card = document.createElement('article');
-    card.className = 'bg-pure-white border border-surface-variant rounded-xl p-6 flex flex-col gap-stack-md ambient-shadow-sm hover:ambient-shadow-md transition-shadow relative overflow-hidden group';
+    card.className = 'bg-pure-white border border-surface-variant rounded-xl p-6 flex flex-col gap-stack-md ambient-shadow-sm hover:ambient-shadow-md transition-all duration-300 hover:scale-[1.02] relative overflow-hidden group';
 
-    const highlightBar = job.highlight
-      ? '<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>'
-      : '';
+    const highlightBar = '<div class="absolute top-0 left-0 w-1 h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>';
 
     const bookmarkIcon = job.isBookmarked
       ? '<span class="material-symbols-outlined text-primary" style="font-variation-settings: \'FILL\' 1;">bookmark</span>'
