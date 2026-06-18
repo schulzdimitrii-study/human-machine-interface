@@ -7,7 +7,7 @@
   /* Preto */
   --cor-back1: #edf2f4;
   /* Azul claro */
-  --cor-back2: white;
+  --cor-back2: rgb(212, 237, 255);
 
   --md-sys-color-primary: #126ae2;
   --md-sys-color-on-primary: #FFFFFF;

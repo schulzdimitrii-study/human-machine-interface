@@ -1,12 +1,12 @@
 function openMenu() {
-  document.getElementById("menu_aba").style.left = "0";  
+    document.getElementById("menu_aba").style.left = "0";
 }
 
 function closeMenu() {
-  document.getElementById("menu_aba").style.left = "-320px";    
+    document.getElementById("menu_aba").style.left = "-320px";
 }
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     const menu = document.getElementById('menu_aba');
     const hamburger = document.getElementById('menu');
 
@@ -18,12 +18,18 @@ document.addEventListener('click', function(event) {
 });
 
 function temaInatel() {
-    document.documentElement.style.setProperty('--cor-click', '#126ae2');
-    document.documentElement.style.setProperty('--cor-sombra', '#0a599b');
-    document.documentElement.style.setProperty('--cor-text', 'black');
-    document.documentElement.style.setProperty('--cor-back1', '#edf2f4');
-    document.documentElement.style.setProperty('--cor-back2', '#6a8293');
-    document.documentElement.style.setProperty('--md-sys-color-primary', '#126ae2');
+    const cores = {
+        '--cor-click': '#126ae2',
+        '--cor-sombra': '#0a599b',
+        '--cor-text': 'black',
+        '--cor-back1': '#edf2f4',
+        '--cor-back2': 'white',
+        '--md-sys-color-primary': '#126ae2'
+    };
+
+    for (const [variavel, valor] of Object.entries(cores)) {
+        document.documentElement.style.setProperty(variavel, valor);
+    }
 }
 
 function temaDark() {
@@ -124,3 +130,5 @@ function updateCarousel() {
 
 document.getElementById('nextBtn').addEventListener('click', nextCard);
 document.getElementById('prevBtn').addEventListener('click', prevCard);
+
+temaInatel();
