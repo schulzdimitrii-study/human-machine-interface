@@ -1,3 +1,11 @@
+function openMenu() {
+  document.getElementById("side_menu").style.left = "0";
+}
+
+function closeMenu() {
+  document.getElementById("side_menu").style.left = "-320px";
+}
+
 class HeaderComponent extends HTMLElement {
   constructor() {
     super();
@@ -31,13 +39,13 @@ class HeaderComponent extends HTMLElement {
     let rightElement = '';
     if (type === 'subpage-details') {
       rightElement = `
-        <div class="flex items-center gap-3">
-          <div class="hidden md:flex gap-2">
-            <button onclick="window.dispatchEvent(new CustomEvent('save-job'))" class="flex items-center gap-2 px-4 py-2 border border-outline bg-pure-white text-primary rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+        <div class="header-right-wrapper">
+          <div class="header-actions">
+            <button onclick="window.dispatchEvent(new CustomEvent('save-job'))" class="btn-header-save">
               <span class="material-symbols-outlined header-save-icon" style="font-size: 18px;">bookmark_border</span>
               Salvar Vaga
             </button>
-            <button onclick="window.dispatchEvent(new CustomEvent('apply-job'))" class="flex items-center gap-2 px-4 py-2 bg-inatel-blue text-pure-white rounded-lg font-label-md text-label-md shadow-sm hover:bg-primary transition-colors">
+            <button class="btn-header-apply apply-job-btn">
               <span class="material-symbols-outlined" style="font-size: 18px;">send</span>
               Candidatar-se à Vaga
             </button>
@@ -63,12 +71,12 @@ class HeaderComponent extends HTMLElement {
       `;
     } else if (type === 'subpage-details') {
       centerElement = `
-        <h1 class="text-label-lg font-label-lg text-on-surface truncate px-4 header-job-title">${jobTitle}</h1>
+        <h1 class="header-job-title">${jobTitle}</h1>
       `;
     }
 
     this.innerHTML = `
-      <header id="head" class="${type === 'subpage-details' ? 'border-b border-outline-variant w-full z-40 sticky top-0 bg-surface' : ''}">
+      <header id="head" class="${type === 'subpage-details' ? 'header-subpage-details' : ''}">
         ${leftElement}
         ${centerElement}
         ${rightElement}

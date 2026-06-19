@@ -58,17 +58,17 @@ function renderDetails(job) {
   document.getElementById('job-description').textContent = job.description;
   document.getElementById('about-company').textContent = job.about_company;
 
-  const badgeContainer = document.getElementById('job-badge-container');
+    const badgeContainer = document.getElementById('job-badge-container');
   if (badgeContainer && job.badge) {
     let badgeClass = '';
     if (job.badgeType === 'new') {
-      badgeClass = 'bg-surface-container text-on-surface-variant';
+      badgeClass = 'badge-new';
     } else if (job.badgeType === 'urgent') {
-      badgeClass = 'border border-outline text-outline';
+      badgeClass = 'badge-urgent';
     } else if (job.badgeType === 'applied') {
-      badgeClass = 'bg-deep-navy text-pure-white';
+      badgeClass = 'badge-applied';
     }
-    badgeContainer.innerHTML = `<span class="inline-flex items-center px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider ${badgeClass}">${job.badge}</span>`;
+    badgeContainer.innerHTML = `<span class="job-badge ${badgeClass}">${job.badge}</span>`;
   }
 
   const reqList = document.getElementById('job-requirements');
@@ -78,7 +78,7 @@ function renderDetails(job) {
     li.className = 'detail-item';
     li.innerHTML = `
       <span class="material-symbols-outlined detail-icon-bullet">check_circle</span>
-      <span class="text-body-md text-on-surface-variant">${req}</span>
+      <span class="detail-item-text">${req}</span>
     `;
     reqList.appendChild(li);
   });
@@ -90,7 +90,7 @@ function renderDetails(job) {
     li.className = 'detail-item';
     li.innerHTML = `
       <span class="material-symbols-outlined detail-icon-bullet">redeem</span>
-      <span class="text-body-md text-on-surface-variant">${ben}</span>
+      <span class="detail-item-text">${ben}</span>
     `;
     benList.appendChild(li);
   });
@@ -108,7 +108,7 @@ function renderDetails(job) {
   applyButtons.forEach(btn => {
     if (job.actionType === 'disabled') {
       btn.disabled = true;
-      btn.classList.add('opacity-50', 'cursor-not-allowed');
+      btn.classList.add('btn-disabled');
       btn.textContent = 'Processo Seletivo Encerrado';
     } else {
       btn.addEventListener('click', applyForJob);
@@ -160,11 +160,11 @@ function showError(msg) {
   const container = document.getElementById('details-container');
   if (container) {
     container.innerHTML = `
-      <div class="bento-card text-center py-12" style="grid-column: 1/-1;">
-        <span class="material-symbols-outlined text-error text-[48px] mb-4">error</span>
-        <h3 class="text-headline-md text-on-surface mb-2">Vaga não encontrada ou erro de carregamento</h3>
-        <p class="text-body-md text-on-surface-variant mb-6">${msg || 'A vaga solicitada não existe ou foi removida.'}<br>Certifique-se de acessar via servidor local (http://localhost:8000/) se houver erro de carregamento.</p>
-        <a href="jobOpenings.html" class="inline-flex items-center gap-2 px-6 py-3 bg-inatel-blue text-pure-white rounded-lg font-label-lg hover:bg-primary transition-colors">
+      <div class="bento-card error-card" style="grid-column: 1/-1;">
+        <span class="material-symbols-outlined error-icon">error</span>
+        <h3 class="error-title">Vaga não encontrada ou erro de carregamento</h3>
+        <p class="error-text">${msg || 'A vaga solicitada não existe ou foi removida.'}<br>Certifique-se de acessar via servidor local (http://localhost:8000/) se houver erro de carregamento.</p>
+        <a href="jobOpenings.html" class="btn-error-back">
           <span class="material-symbols-outlined">arrow_back</span> Voltar para Vagas
         </a>
       </div>
