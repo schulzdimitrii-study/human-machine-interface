@@ -91,5 +91,98 @@
     "about_company": "A Inova Tech desenvolve plataformas SaaS focadas em logística e e-commerce de alto impacto, provendo soluções tecnológicas modernas no cenário nacional.",
     "status": "Fechada",
     "status_percent": 100
+  },
+  {
+    "id": 4,
+    "title": "Estágio em Desenvolvimento Frontend",
+    "company": "Empresa ABC",
+    "location": "Santa Rita do Sapucaí (Presencial)",
+    "location_full": "Santa Rita do Sapucaí, MG",
+    "compensation": "R$ 1.200,00",
+    "salary": "R$ 1.200,00",
+    "hours": "30h/semana",
+    "type": "Estágio",
+    "badge": "Novo",
+    "badgeType": "new",
+    "highlight": false,
+    "actionType": "active",
+    "description": "Buscamos estagiário criativo e detalhista para se juntar ao nosso time de frontend. Você ajudará a criar interfaces web modernas, responsivas e interativas utilizando HTML, CSS, JavaScript e React.",
+    "requirements": [
+      "Conhecimento em HTML5, CSS3 e JavaScript ES6",
+      "Noções de React ou outro framework moderno",
+      "Conhecimento básico de Git/GitHub",
+      "Estar cursando a partir do 3º período"
+    ],
+    "benefits": [
+      "Bolsa auxílio de R$ 1.200,00",
+      "Vale Transporte",
+      "Seguro de Vida",
+      "Horário flexível"
+    ],
+    "about_company": "A Empresa ABC é uma startup em rápido crescimento focada em soluções inovadoras de experiência do cliente (CX). Oferecemos um ambiente de trabalho descontraído e muitas oportunidades de aprendizado.",
+    "status": "Aberta",
+    "status_percent": 100
+  },
+  {
+    "id": 5,
+    "title": "Estágio em QA / Testes de Software",
+    "company": "QualiTech",
+    "location": "Remoto",
+    "location_full": "Remoto, Brasil",
+    "compensation": "R$ 1.300,00",
+    "salary": "R$ 1.300,00",
+    "hours": "30h/semana",
+    "type": "Estágio",
+    "badge": "Urgente",
+    "badgeType": "urgent",
+    "highlight": true,
+    "actionType": "active",
+    "description": "Estamos contratando estagiário de QA para apoiar nosso time de engenharia na garantia de qualidade dos nossos produtos. Você ajudará no planejamento de testes, escrita de casos de teste, execução de testes manuais e automatizados.",
+    "requirements": [
+      "Noções básicas de ciclo de vida de desenvolvimento de software",
+      "Lógica de programação básica",
+      "Atenção a detalhes e boa comunicação escrita",
+      "Cursando Engenharia de Software, Computação ou correlatos"
+    ],
+    "benefits": [
+      "Bolsa de R$ 1.300,00",
+      "Vale Refeição",
+      "Auxílio Home Office",
+      "Programas de mentoria técnica"
+    ],
+    "about_company": "A QualiTech é líder em consultoria de engenharia de qualidade e DevOps para médias e grandes empresas da América Latina. Nosso propósito é acelerar a entrega de softwares mais seguros e confiáveis.",
+    "status": "Aberta",
+    "status_percent": 50
+  },
+  {
+    "id": 6,
+    "title": "Desenvolvedor Mobile Trainee",
+    "company": "SoftMobile",
+    "location": "Santa Rita do Sapucaí (Híbrido)",
+    "location_full": "Santa Rita do Sapucaí, MG",
+    "compensation": "A combinar",
+    "salary": "A combinar",
+    "hours": "40h/semana",
+    "type": "Trainee",
+    "badge": "Inscrito",
+    "badgeType": "applied",
+    "highlight": false,
+    "actionType": "disabled",
+    "description": "Vaga de trainee para desenvolvedor mobile. Atuará no desenvolvimento e evolução de aplicativos móveis utilizando Flutter. Apoiará na integração com APIs REST e otimização de telas.",
+    "requirements": [
+      "Conhecimento básico em Flutter e Dart",
+      "Familiaridade com consumo de APIs RESTful",
+      "Conhecimento em publicação de apps (Play Store / App Store) é um diferencial",
+      "Superior completo em Computação ou áreas afins"
+    ],
+    "benefits": [
+      "Salário compatível com o mercado",
+      "Plano de Saúde",
+      "Vale Alimentação",
+      "Cursos e certificações financiados pela empresa"
+    ],
+    "about_company": "A SoftMobile desenvolve aplicativos personalizados e sob demanda para grandes marcas globais nos setores de e-commerce e entretenimento.",
+    "status": "Fechada",
+    "status_percent": 100
   }
 ]
