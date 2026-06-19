@@ -13,28 +13,13 @@ class HeaderComponent extends HTMLElement {
 
   connectedCallback() {
     const type = this.getAttribute('type') || 'home';
-    const backLink = this.getAttribute('back-link') || '#';
     const jobTitle = this.getAttribute('job-title') || '';
 
-    let leftElement = '';
-    if (type === 'home' || type === 'subpage') {
-      leftElement = `
+    let leftElement = `
         <div id="menu" onclick="openMenu()">
           <span class="material-symbols-outlined icoG">menu</span>
         </div>
       `;
-    } else {
-      leftElement = `
-        <div style="display: flex; align-items: center; gap: 15px;">
-          <a href="${backLink}" style="text-decoration: none; display: flex; align-items: center;">
-            <span class="material-symbols-outlined icoG">arrow_back</span>
-          </a>
-          <div id="menu" onclick="openMenu()" style="cursor: pointer; display: flex; align-items: center;">
-            <span class="material-symbols-outlined icoG">menu</span>
-          </div>
-        </div>
-      `;
-    }
 
     let rightElement = '';
     if (type === 'subpage-details') {

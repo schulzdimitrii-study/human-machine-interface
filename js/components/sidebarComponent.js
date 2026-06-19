@@ -10,8 +10,10 @@ class SidebarComponent extends HTMLElement {
 
     this.innerHTML = `
       <nav id="side_menu">
-        <h2 class="font">Menu</h2>
-        <button class="close-btn" onclick="this.closest('sidebar-component').closeMenu()">X</button>
+        <div class="sidebar-header">
+          <h2 class="font">Menu</h2>
+          <button class="close-btn" onclick="this.closest('sidebar-component').closeMenu()">X</button>
+        </div>
         <a href="${homeLink}" style="text-decoration: none;">
           <div class="menu-btn">Início</div>
         </a>
