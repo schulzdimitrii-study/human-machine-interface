@@ -16,10 +16,12 @@
     <link rel="stylesheet" href="../css/jobDetails.css" />
     <script src="../js/jobOpenings.js"></script>
     <script src="../js/components/headerComponent.js"></script>
+    <script src="../js/components/sidebarComponent.js"></script>
     <script src="../js/jobDetails.js"></script>
 </head>
 
 <body class="antialiased min-h-screen flex flex-col">
+    <sidebar-component></sidebar-component>
     <div class="flex-1 flex flex-col min-h-screen">
         <header-component type="subpage-details" back-link="jobOpenings.html"
             job-title="Carregando vaga..."></header-component>
@@ -27,9 +29,7 @@
         <main
             class="flex-1 w-full max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg pb-32 md:pb-12">
             <div id="details-container" class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
-                <!-- Left Main Column -->
                 <div class="lg:col-span-2 flex flex-col gap-gutter">
-                    <!-- Job Overview Card -->
                     <section class="bento-card relative overflow-hidden flex flex-col gap-4">
                         <div class="absolute top-0 left-0 w-1.5 h-full bg-primary"></div>
 
@@ -66,25 +66,18 @@
                                 Carregando...</p>
                         </div>
                     </section>
-
-                    <!-- Requirements Card -->
                     <section class="bento-card">
                         <h3 class="text-headline-sm font-headline-sm text-on-surface mb-4">Requisitos</h3>
                         <ul id="job-requirements" class="detail-list"></ul>
                     </section>
-
-                    <!-- Benefits Card -->
                     <section class="bento-card">
                         <h3 class="text-headline-sm font-headline-sm text-on-surface mb-4">Benefícios</h3>
                         <ul id="job-benefits" class="detail-list">
-                            <!-- Dynamic items -->
                         </ul>
                     </section>
                 </div>
 
-                <!-- Right Sidebar Column -->
                 <div class="flex flex-col gap-gutter">
-                    <!-- Process Status Card -->
                     <section class="bento-card flex flex-col gap-4">
                         <h3 class="text-headline-sm font-headline-sm text-on-surface">Status da Vaga</h3>
                         <div class="flex flex-col gap-2">
@@ -103,7 +96,6 @@
                         </button>
                     </section>
 
-                    <!-- About Company & Map Card -->
                     <section class="bento-card flex flex-col gap-4">
                         <h3 class="text-headline-sm font-headline-sm text-on-surface">Sobre a Empresa</h3>
                         <p id="about-company" class="text-body-sm text-on-surface-variant leading-relaxed">Carregando...

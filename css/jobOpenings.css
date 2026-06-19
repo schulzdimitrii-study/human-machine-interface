@@ -1,23 +1,443 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: var(--bg-color-1) !important;
   color: var(--text-color) !important;
   font-family: "Arimo", sans-serif !important;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Ambient Shadows */
-.ambient-shadow-sm {
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+@media (min-width: 768px) {
+  .layout-wrapper {
+    padding-bottom: 0;
+  }
+}
+
+.job-container {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+@media (min-width: 768px) {
+  .job-container {
+    padding: 24px 32px;
+  }
+}
+
+.page-title {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.search-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.search-bar-wrapper {
+  display: flex;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #c2c6d2;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0px 4px 12px rgba(0, 35, 75, 0.05);
+  overflow: hidden;
+}
+
+.search-bar-wrapper:focus-within {
+  border-color: var(--click-color);
+  box-shadow: 0 0 0 2px rgba(18, 106, 226, 0.2);
+}
+
+.search-input-container {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon-container {
+  position: absolute;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.search-icon-container .material-symbols-outlined {
+  color: #727782;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 16px 12px 40px;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-color);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: #727782;
+}
+
+.search-button {
+  background-color: #f2f4f9;
+  color: var(--text-color);
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 12px 24px;
+  border: none;
+  border-left: 1px solid #c2c6d2;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-button:hover {
+  background-color: #e6e8ed;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid rgba(194, 198, 210, 0.5);
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+.job-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .job-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .job-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.load-more-container {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.load-more-button {
+  padding: 12px 24px;
+  border: 1px solid #c2c6d2;
+  color: var(--text-color);
+  background-color: #ffffff;
+  border-radius: 8px;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
   box-shadow: 0px 4px 12px rgba(0, 35, 75, 0.05);
 }
 
-.ambient-shadow-md {
-  box-shadow: 0px 8px 24px rgba(0, 35, 75, 0.08);
+.load-more-button:hover {
+  background-color: #f2f4f9;
 }
 
-/* Hide scrollbar for horizontal scroll areas */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+/* Job Card Styling */
+.job-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e2e7;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 35, 75, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+
+.job-card:hover {
+  box-shadow: 0px 8px 24px rgba(0, 35, 75, 0.08);
+  transform: scale(1.02);
+}
+
+.job-highlight-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background-color: var(--click-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.job-card:hover .job-highlight-bar {
+  opacity: 1;
+}
+
+.job-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.job-title {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  color: var(--text-color);
+  margin: 0 0 4px 0;
+  padding-right: 32px;
+}
+
+.job-company {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: #424750;
+  margin: 0;
+}
+
+.bookmark-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.bookmark-icon-active {
+  color: var(--click-color) !important;
+  font-variation-settings: 'FILL' 1;
+}
+
+.bookmark-icon-inactive {
+  color: #424750;
+  transition: color 0.2s ease;
+}
+
+.bookmark-icon-inactive:hover {
+  color: var(--click-color);
+}
+
+.job-details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.job-details-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #424750;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.job-details-item .material-symbols-outlined {
+  color: #727782;
+  font-size: 18px;
+}
+
+.job-card-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.job-badges-wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.job-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-new {
+  background-color: #eceef3;
+  color: #424750;
+}
+
+.badge-urgent {
+  border: 1px solid #727782;
+  color: #727782;
+  padding: 3px 7px;
+}
+
+.badge-applied {
+  background-color: #00234B;
+  color: #ffffff;
+}
+
+.btn-view-job {
+  padding: 8px 16px;
+  border: 1px solid var(--click-color);
+  color: var(--click-color);
+  background-color: #ffffff;
+  border-radius: 8px;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-view-job:hover {
+  background-color: #f2f4f9;
+}
+
+.btn-view-job .material-symbols-outlined {
+  font-size: 16px;
+  color: var(--click-color);
+}
+
+.btn-details-disabled {
+  padding: 8px 16px;
+  background-color: #eceef3;
+  color: #424750;
+  border: none;
+  border-radius: 8px;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-details-disabled .material-symbols-outlined {
+  font-size: 16px;
+  color: #727782;
+}
+
+/* Bottom Navigation Bar (Mobile Only) */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  padding: 0 8px;
+  background-color: #ffffff;
+  border-top: 1px solid #c2c6d2;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+  z-index: 50;
+}
+
+@media (min-width: 768px) {
+  .bottom-nav {
+    display: none;
+  }
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #424750;
+  text-decoration: none;
+  width: 64px;
+  height: 64px;
+  transition: color 0.2s ease;
+}
+
+.bottom-nav-item:hover {
+  color: var(--click-color);
+}
+
+.bottom-nav-item .material-symbols-outlined {
+  margin-bottom: 4px;
+  color: inherit;
+}
+
+.bottom-nav-item span:not(.material-symbols-outlined) {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.bottom-nav-item-active {
+  background-color: var(--bg-color-1, #edf2f4);
+  color: var(--click-color);
+  border-radius: 20px;
+  padding: 4px 16px;
+  height: auto;
+  width: auto;
+}
+
+.nav-badge-container {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background-color: #ba1a1a;
+  border-radius: 50%;
 }

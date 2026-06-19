@@ -9,7 +9,7 @@ class HeaderComponent extends HTMLElement {
     const jobTitle = this.getAttribute('job-title') || '';
 
     let leftElement = '';
-    if (type === 'home') {
+    if (type === 'home' || type === 'subpage') {
       leftElement = `
         <div id="menu" onclick="openMenu()">
           <span class="material-symbols-outlined icoG">menu</span>
@@ -17,9 +17,14 @@ class HeaderComponent extends HTMLElement {
       `;
     } else {
       leftElement = `
-        <a href="${backLink}" style="text-decoration: none; display: flex; align-items: center;">
-          <span class="material-symbols-outlined icoG">arrow_back</span>
-        </a>
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <a href="${backLink}" style="text-decoration: none; display: flex; align-items: center;">
+            <span class="material-symbols-outlined icoG">arrow_back</span>
+          </a>
+          <div id="menu" onclick="openMenu()" style="cursor: pointer; display: flex; align-items: center;">
+            <span class="material-symbols-outlined icoG">menu</span>
+          </div>
+        </div>
       `;
     }
 
@@ -27,7 +32,6 @@ class HeaderComponent extends HTMLElement {
     if (type === 'subpage-details') {
       rightElement = `
         <div class="flex items-center gap-3">
-          <!-- Desktop only header actions -->
           <div class="hidden md:flex gap-2">
             <button onclick="window.dispatchEvent(new CustomEvent('save-job'))" class="flex items-center gap-2 px-4 py-2 border border-outline bg-pure-white text-primary rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors">
               <span class="material-symbols-outlined header-save-icon" style="font-size: 18px;">bookmark_border</span>
@@ -38,7 +42,6 @@ class HeaderComponent extends HTMLElement {
               Candidatar-se à Vaga
             </button>
           </div>
-          <!-- Profile icon -->
           <div id="profile"><span class="material-symbols-outlined icoG">Person</span></div>
         </div>
       `;
@@ -65,7 +68,7 @@ class HeaderComponent extends HTMLElement {
     }
 
     this.innerHTML = `
-      <header id="head" class="${type === 'subpage' || type === 'subpage-details' ? 'border-b border-outline-variant w-full z-40 sticky top-0 bg-surface' : ''}">
+      <header id="head" class="${type === 'subpage-details' ? 'border-b border-outline-variant w-full z-40 sticky top-0 bg-surface' : ''}">
         ${leftElement}
         ${centerElement}
         ${rightElement}
@@ -75,3 +78,4 @@ class HeaderComponent extends HTMLElement {
 }
 
 customElements.define('header-component', HeaderComponent);
+

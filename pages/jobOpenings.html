@@ -5,121 +5,56 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Inatel Vagas - Vagas de Estágio</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap"
         rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         rel="stylesheet" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/jobOpenings.css" />
-    <script src="../js/jobOpenings.js"></script>
-    <script src="../js/components/headerComponent.js"></script>
+    <link rel="stylesheet" href="../css/style.css?v=2" />
+    <link rel="stylesheet" href="../css/jobOpenings.css?v=2" />
+    <script src="../js/jobOpenings.js?v=2"></script>
+    <script src="../js/components/headerComponent.js?v=2"></script>
+    <script src="../js/components/sidebarComponent.js?v=2"></script>
 </head>
 
-<body class="antialiased min-h-screen flex flex-col">
-    <div class="flex-1 flex flex-col pb-24 md:pb-0 min-h-screen">
+<body>
+    <sidebar-component></sidebar-component>
+    <div class="layout-wrapper">
         <header-component type="subpage" back-link="../index.html"></header-component>
 
         <!-- Main Workspace -->
-        <main class="flex-1 w-full max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
-            <h2 class="text-headline-md font-headline-md font-bold text-on-surface mb-stack-md">Vagas de Estágio</h2>
+        <main class="job-container">
+            <h2 class="page-title">Vagas de Estágio</h2>
 
             <!-- Search and Filter Section -->
-            <section class="flex flex-col gap-stack-md mb-stack-lg">
+            <section class="search-section">
                 <!-- Search Bar -->
-                <div
-                    class="flex w-full bg-pure-white border border-outline-variant rounded focus-within:border-inatel-blue focus-within:border-2 transition-all ambient-shadow-sm">
-                    <div class="relative flex-1">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span class="material-symbols-outlined text-outline">search</span>
+                <div class="search-bar-wrapper">
+                    <div class="search-input-container">
+                        <div class="search-icon-container">
+                            <span class="material-symbols-outlined">search</span>
                         </div>
-                        <input
-                            class="w-full py-3 pl-10 pr-4 text-body-md font-body-md text-on-surface bg-transparent border-none focus:ring-0 placeholder-outline"
-                            placeholder="Buscar por palavra-chave... (ex: Java, backend)" type="text" />
+                        <input class="search-input" placeholder="Buscar por palavra-chave... (ex: Java, backend)"
+                            type="text" />
                     </div>
-                    <button
-                        class="bg-surface-container-low text-on-surface font-label-lg text-label-lg px-6 py-3 border-l border-outline-variant hover:bg-surface-container-high transition-colors rounded-r">
+                    <button class="search-button">
                         Buscar
                     </button>
                 </div>
-
-                <!-- Quick Filters -->
-                <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2">
-                    <button
-                        class="shrink-0 flex items-center gap-1 px-4 py-2 bg-surface-container border border-outline-variant rounded-full text-body-sm font-body-sm text-on-surface-variant hover:bg-surface-container-high transition-colors">
-                        Engenharia de Software
-                    </button>
-                    <button
-                        class="shrink-0 flex items-center gap-1 px-4 py-2 bg-surface-container border border-outline-variant rounded-full text-body-sm font-body-sm text-on-surface-variant hover:bg-surface-container-high transition-colors">
-                        5º Período
-                    </button>
-                    <div class="h-6 w-px bg-outline-variant mx-1 hidden md:block"></div>
-                    <button
-                        class="shrink-0 flex items-center gap-1 px-4 py-2 bg-pure-white border border-outline-variant rounded-full text-body-sm font-body-sm text-on-surface hover:bg-surface-container-low transition-colors">
-                        Área <span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span>
-                    </button>
-                    <button
-                        class="shrink-0 flex items-center gap-1 px-4 py-2 bg-pure-white border border-outline-variant rounded-full text-body-sm font-body-sm text-on-surface hover:bg-surface-container-low transition-colors">
-                        Modalidade <span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span>
-                    </button>
-                    <button
-                        class="shrink-0 ml-auto flex items-center gap-2 px-3 py-2 text-primary font-label-md text-label-md hover:bg-surface-container-low rounded transition-colors">
-                        <span class="material-symbols-outlined">tune</span>
-                        <span class="hidden md:inline">Mais filtros</span>
-                    </button>
-                </div>
-
-                <div class="w-full flex justify-center mt-2 md:hidden">
-                    <button class="flex items-center gap-1 text-primary font-label-md text-label-md hover:underline">
-                        Ver mais filtros <span class="material-symbols-outlined text-[16px]">chevron_right</span>
-                    </button>
-                </div>
-                <hr class="border-outline-variant/50 mt-2 mb-4" />
+                <hr class="divider" />
             </section>
 
             <!-- Job Listings Grid -->
-            <section id="job-listings-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+            <section id="job-listings-grid" class="job-grid">
             </section>
 
-            <div class="mt-8 flex justify-center">
-                <button
-                    class="px-6 py-3 border border-outline-variant text-on-surface hover:bg-surface-container-low rounded font-label-lg text-label-lg transition-colors bg-pure-white ambient-shadow-sm">
+            <div class="load-more-container">
+                <button class="load-more-button">
                     Carregar mais vagas
                 </button>
             </div>
         </main>
-    </div>
-
-    <!-- BottomNavBar (Mobile Only) -->
-    <nav
-        class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-surface border-t border-outline-variant shadow-lg">
-        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary w-16 h-16"
-            href="../index.html">
-            <span class="material-symbols-outlined mb-1">home</span>
-            <span class="text-label-md font-label-md text-[10px]">Início</span>
-        </a>
-        <a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 scale-95 transition-transform duration-150 active"
-            href="#">
-            <span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">work</span>
-            <span class="text-label-md font-label-md text-[10px]">Vagas</span>
-        </a>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary w-16 h-16"
-            href="#">
-            <div class="relative">
-                <span class="material-symbols-outlined mb-1">notifications</span>
-                <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
-            </div>
-            <span class="text-label-md font-label-md text-[10px]">Notificações</span>
-        </a>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary w-16 h-16"
-            href="#">
-            <span class="material-symbols-outlined mb-1">person</span>
-            <span class="text-label-md font-label-md text-[10px]">Perfil</span>
-        </a>
-    </nav>
-
 </body>
 
 </html>

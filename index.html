@@ -25,19 +25,11 @@
     document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
   </script>
   <script src="js/components/headerComponent.js"></script>
+  <script src="js/components/sidebarComponent.js"></script>
 </head>
 
 <body>
-  <nav id="side_menu">
-    <h2 class="font">Menu</h2>
-    <button class="close-btn" onclick="closeMenu()">X</button>
-    <a href="pages/jobOpenings.html" style="text-decoration: none;">
-      <div class="menu-btn">Vagas de Estágio</div>
-    </a>
-    <div class="menu-btn" onclick="closeMenu(), inatelTheme()">Tema Inatel</div>
-    <div class="menu-btn" onclick="closeMenu(), darkTheme()">Tema Dark</div>
-  </nav>
-
+  <sidebar-component></sidebar-component>
   <header-component type="home"></header-component>
 
   <main>

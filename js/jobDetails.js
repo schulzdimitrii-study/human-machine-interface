@@ -40,7 +40,7 @@ async function loadJobDetails() {
     updateBookmarkUI(currentJob.isBookmarked);
   } catch (error) {
     console.error('Error loading job details:', error);
-    showError();
+    showError('Erro ao carregar detalhes: ' + error.message);
   }
 }
 
@@ -156,14 +156,14 @@ function applyForJob() {
   alert('Candidatura enviada com sucesso para ' + currentJob.title + '!');
 }
 
-function showError() {
+function showError(msg) {
   const container = document.getElementById('details-container');
   if (container) {
     container.innerHTML = `
-      <div class="bento-card text-center py-12">
+      <div class="bento-card text-center py-12" style="grid-column: 1/-1;">
         <span class="material-symbols-outlined text-error text-[48px] mb-4">error</span>
-        <h3 class="text-headline-md text-on-surface mb-2">Vaga não encontrada</h3>
-        <p class="text-body-md text-on-surface-variant mb-6">A vaga solicitada não existe ou foi removida.</p>
+        <h3 class="text-headline-md text-on-surface mb-2">Vaga não encontrada ou erro de carregamento</h3>
+        <p class="text-body-md text-on-surface-variant mb-6">${msg || 'A vaga solicitada não existe ou foi removida.'}<br>Certifique-se de acessar via servidor local (http://localhost:8000/) se houver erro de carregamento.</p>
         <a href="jobOpenings.html" class="inline-flex items-center gap-2 px-6 py-3 bg-inatel-blue text-pure-white rounded-lg font-label-lg hover:bg-primary transition-colors">
           <span class="material-symbols-outlined">arrow_back</span> Voltar para Vagas
         </a>
