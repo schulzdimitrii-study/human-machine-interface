@@ -338,3 +338,7 @@ main {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.apply-job-btn .material-symbols-outlined {
+  color: #ffffff;
+}
