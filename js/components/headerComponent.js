@@ -44,9 +44,7 @@ class HeaderComponent extends HTMLElement {
       `;
     }
 
-    let centerElement = '';
-    if (type === 'home' || type === 'subpage') {
-      centerElement = `
+    let centerElement = `
         <div id="logo">
           <svg class="svg_logo" xmlns="http://www.w3.org/2000/svg" viewBox="100 150 390 116">
             <path class="path_logo"
@@ -54,11 +52,6 @@ class HeaderComponent extends HTMLElement {
           </svg>
         </div>
       `;
-    } else if (type === 'subpage-details') {
-      centerElement = `
-        <h1 class="header-job-title">${jobTitle}</h1>
-      `;
-    }
 
     this.innerHTML = `
       <header id="head" class="${type === 'subpage-details' ? 'header-subpage-details' : ''}">

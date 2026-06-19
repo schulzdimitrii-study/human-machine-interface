@@ -120,7 +120,7 @@ main {
   box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.3);
   overflow-x: hidden;
   transition: left 0.8s ease;
-  z-index: 1;
+  z-index: 100;
   border-radius: 10px;
 }
 
@@ -262,12 +262,11 @@ main {
 
 /* Subpage Header Styles */
 .header-subpage-details {
-  border-bottom: 1px solid var(--outline-variant, #c2c6d2);
   width: 100%;
   z-index: 40;
   position: sticky;
   top: 0;
-  background-color: var(--surface-container-lowest, #ffffff);
+  background-color: var(--bg-color-1);
 }
 
 .header-job-title {
