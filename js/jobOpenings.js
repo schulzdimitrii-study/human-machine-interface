@@ -1,4 +1,5 @@
 let jobs = [];
+let searchQuery = '';
 
 function getBookmarks() {
   const stored = localStorage.getItem('job_bookmarks');
@@ -39,12 +40,40 @@ async function loadJobs() {
 }
 
 
+function normalizeText(str) {
+  if (!str) return '';
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
+
 function renderJobs() {
   const grid = document.getElementById('job-listings-grid');
   if (!grid) return;
   grid.innerHTML = '';
 
-  jobs.forEach(job => {
+  const filteredJobs = jobs.filter(job => {
+    if (!searchQuery) return true;
+    const q = normalizeText(searchQuery);
+    const titleMatch = normalizeText(job.title).includes(q);
+    const companyMatch = normalizeText(job.company).includes(q);
+    const locationMatch = normalizeText(job.location).includes(q);
+    const descriptionMatch = normalizeText(job.description).includes(q);
+    const requirementsMatch = job.requirements.some(req => normalizeText(req).includes(q));
+    const compensationMatch = job.compensation && normalizeText(job.compensation).includes(q);
+    return titleMatch || companyMatch || locationMatch || descriptionMatch || requirementsMatch || compensationMatch;
+  });
+
+  if (filteredJobs.length === 0) {
+    grid.innerHTML = `
+      <div style="grid-column: 1/-1; text-align: center; padding: 48px 24px; color: var(--text-color); opacity: 0.7; font-family: 'Nunito Sans', sans-serif;">
+        <span class="material-symbols-outlined" style="font-size: 48px; margin-bottom: 16px; color: var(--click-color);">search_off</span>
+        <h3 style="margin: 0 0 8px 0; font-family: 'Hanken Grotesk', sans-serif; font-size: 20px; font-weight: 700;">Nenhuma vaga encontrada</h3>
+        <p style="margin: 0;">Tente buscar por outras palavras-chave ou limpe a busca.</p>
+      </div>
+    `;
+    return;
+  }
+
+  filteredJobs.forEach(job => {
     const card = document.createElement('article');
     card.className = 'job-card';
 
@@ -114,6 +143,14 @@ function renderJobs() {
   });
 }
 
+function performSearch() {
+  const input = document.querySelector('.search-input');
+  if (input) {
+    searchQuery = input.value.trim();
+    renderJobs();
+  }
+}
+
 function toggleBookmark(jobId) {
   const job = jobs.find(j => j.id === jobId);
   if (job) {
@@ -123,4 +160,21 @@ function toggleBookmark(jobId) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', loadJobs);
+document.addEventListener('DOMContentLoaded', () => {
+  loadJobs();
+
+  const searchBtn = document.querySelector('.search-button');
+  const searchInput = document.querySelector('.search-input');
+
+  if (searchBtn) {
+    searchBtn.addEventListener('click', performSearch);
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        performSearch();
+      }
+    });
+  }
+});
