@@ -12,6 +12,12 @@ body {
   flex-direction: column;
 }
 
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 130px !important;
+  }
+}
+
 .layout-wrapper {
   display: flex;
   flex-direction: column;
@@ -336,7 +342,7 @@ body {
 
 .mobile-action-bar {
   position: fixed;
-  bottom: 0;
+  bottom: 64px;
   left: 0;
   width: 100%;
   background: var(--surface-container-lowest, #ffffff);
@@ -478,3 +484,307 @@ body {
   background-color: #00234B;
   color: #ffffff;
 }
+
+/* Stepper Indicator Styles */
+.stepper-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 8px;
+}
+
+.step-indicator {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--bg-color-1, #edf2f4);
+  color: var(--text-color, #2b2b2b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  border: 1px solid var(--outline-variant, #c2c6d2);
+}
+
+.step-indicator.active {
+  background-color: var(--click-color, #126ae2);
+  color: #ffffff;
+  border-color: var(--click-color, #126ae2);
+}
+
+.step-indicator.completed {
+  background-color: #2e7d32;
+  color: #ffffff;
+  border-color: #2e7d32;
+}
+
+.step-line {
+  height: 2px;
+  width: 40px;
+  background-color: var(--outline-variant, #c2c6d2);
+  transition: background-color 0.3s ease;
+}
+
+.step-line.completed {
+  background-color: #2e7d32;
+}
+
+/* Stepper Content Cards */
+.apply-step {
+  display: none;
+}
+
+.apply-step.active {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step-intro {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.profile-preview-card {
+  background-color: var(--bg-color-1, #edf2f4);
+  border: 1px solid var(--outline-variant, #e0e2e7);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-preview-card p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.field-tip {
+  font-size: 11px;
+  opacity: 0.6;
+  margin: 2px 0 6px 0;
+}
+
+.skills-input-section input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--outline-variant, #c2c6d2);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text-color);
+  background-color: var(--surface-container-lowest, #ffffff);
+}
+
+.skills-input-section input:focus {
+  outline: none;
+  border-color: var(--click-color, #126ae2);
+}
+
+/* CV Options styles */
+.cv-options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cv-option-card {
+  border: 1px solid var(--outline-variant, #c2c6d2);
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  background-color: var(--bg-color-2, #ffffff);
+  transition: all 0.2s ease;
+}
+
+.cv-option-card:hover {
+  border-color: var(--click-color, #126ae2);
+  background-color: #f5f9ff;
+}
+
+.cv-option-card input[type="radio"] {
+  margin: 0;
+}
+
+.cv-option-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.cv-option-content .material-symbols-outlined {
+  font-size: 32px;
+  color: var(--click-color, #126ae2);
+}
+
+.cv-option-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cv-option-desc {
+  margin: 2px 0 0 0;
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+/* Action Buttons */
+.step-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.btn-step-next, .btn-step-back {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-step-next {
+  background-color: var(--click-color, #126ae2);
+  color: #ffffff;
+  border: none;
+}
+
+.btn-step-next:hover {
+  background-color: var(--shadow-color, #0a599b);
+}
+
+.btn-step-back {
+  background-color: #ffffff;
+  color: var(--text-color);
+  border: 1px solid var(--outline-variant, #c2c6d2);
+}
+
+.btn-step-back:hover {
+  background-color: var(--bg-color-1, #edf2f4);
+}
+
+/* Success Dialog */
+.success-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 16px 8px;
+}
+
+.success-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #e8f5e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.check-success-icon {
+  font-size: 48px;
+  color: #2e7d32 !important;
+}
+
+.success-screen h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.success-desc {
+  font-size: 13px;
+  opacity: 0.8;
+  margin: 0 0 20px 0;
+  line-height: 1.4;
+}
+
+.protocol-card {
+  background-color: #f1f8e9;
+  border: 1px solid #c5e1a5;
+  border-radius: 8px;
+  padding: 12px 24px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.protocol-title {
+  font-size: 10px;
+  font-weight: 700;
+  color: #558b2f;
+  margin: 0 0 4px 0;
+  letter-spacing: 1px;
+}
+
+.protocol-num {
+  font-size: 18px;
+  font-weight: 700;
+  color: #33691e;
+  margin: 0;
+}
+
+.notif-email-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--bg-color-1, #edf2f4);
+  border: 1px solid var(--outline-variant, #e0e2e7);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.notif-email-card .material-symbols-outlined {
+  color: var(--click-color);
+  font-size: 28px;
+}
+
+.notif-email-card p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
+.btn-success-close {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--click-color, #126ae2);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btn-success-close:hover {
+  opacity: 0.9;
+}
+

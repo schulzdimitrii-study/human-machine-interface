@@ -36,6 +36,15 @@ async function loadJobDetails() {
       currentJob.isBookmarked = !!currentJob.isBookmarked;
     }
 
+    const appliedJobs = JSON.parse(localStorage.getItem('applied_jobs') || '{}');
+    if (appliedJobs[currentJob.id]) {
+      currentJob.badge = 'Candidatado';
+      currentJob.badgeType = 'applied';
+      currentJob.actionType = 'disabled';
+      currentJob.status = 'Candidatura Enviada';
+      currentJob.status_percent = 100;
+    }
+
     renderDetails(currentJob);
     updateBookmarkUI(currentJob.isBookmarked);
   } catch (error) {
@@ -58,7 +67,7 @@ function renderDetails(job) {
   document.getElementById('job-description').textContent = job.description;
   document.getElementById('about-company').textContent = job.about_company;
 
-    const badgeContainer = document.getElementById('job-badge-container');
+  const badgeContainer = document.getElementById('job-badge-container');
   if (badgeContainer && job.badge) {
     let badgeClass = '';
     if (job.badgeType === 'new') {
@@ -98,7 +107,7 @@ function renderDetails(job) {
   const statusPercent = job.status_percent || 0;
   const statusText = document.getElementById('status-text');
   if (statusText) statusText.textContent = `Status do Processo: ${job.status || 'Aberta'}`;
-  
+
   const statusProgress = document.getElementById('status-progress');
   if (statusProgress) {
     statusProgress.style.width = `${statusPercent}%`;
@@ -126,7 +135,7 @@ function updateBookmarkUI(isBookmarked) {
   if (headerSaveIcon) {
     headerSaveIcon.textContent = isBookmarked ? 'bookmark' : 'bookmark_border';
     headerSaveIcon.style.fontVariationSettings = isBookmarked ? "'FILL' 1" : "'FILL' 0";
-    
+
     const headerSaveBtnText = headerSaveIcon.nextSibling;
     if (headerSaveBtnText) {
       headerSaveBtnText.textContent = isBookmarked ? ' Salva' : ' Salvar Vaga';
@@ -151,9 +160,210 @@ function toggleJobBookmark() {
   updateBookmarkUI(currentJob.isBookmarked);
 }
 
-function applyForJob() {
+let selectedFile = null;
+
+function getAlunoProfile() {
+  if (!localStorage.getItem('aluno_profile')) {
+    const defaultProfile = {
+      idAluno: 101,
+      nome: 'Lucas Andrade',
+      matricula: '1542',
+      curso: 'Engenharia de Software',
+      periodo: 5,
+      curriculoSalvoPath: 'curriculo_lucas.pdf',
+      habilidades: ['HTML', 'CSS', 'JavaScript', 'Python']
+    };
+    localStorage.setItem('aluno_profile', JSON.stringify(defaultProfile));
+  }
+  const data = JSON.parse(localStorage.getItem('aluno_profile'));
+  return new window.AlunoCandidato(
+    data.idAluno,
+    data.nome,
+    data.matricula,
+    data.curso,
+    data.periodo,
+    data.curriculoSalvoPath,
+    data.habilidades
+  );
+}
+
+function saveAlunoProfile(aluno) {
+  localStorage.setItem('aluno_profile', JSON.stringify(aluno.visualizarPerfil()));
+}
+
+function openApplyModal() {
   if (!currentJob || currentJob.actionType === 'disabled') return;
-  alert('Candidatura enviada com sucesso para ' + currentJob.title + '!');
+
+  const modal = document.getElementById('apply-modal');
+  if (modal) {
+    modal.classList.add('open');
+  }
+
+  const aluno = getAlunoProfile();
+  document.getElementById('apply-nome').textContent = aluno.nome;
+  document.getElementById('apply-curso').textContent = aluno.curso;
+  document.getElementById('apply-matricula').textContent = aluno.matricula;
+  document.getElementById('apply-periodo').textContent = aluno.periodo;
+
+  document.getElementById('apply-skills-input').value = aluno.habilidades.join(', ');
+
+  const savedCvDesc = document.getElementById('apply-saved-cv-name');
+  if (savedCvDesc) {
+    savedCvDesc.textContent = aluno.curriculoSalvoPath
+      ? aluno.curriculoSalvoPath.replace('uploads/', '')
+      : 'Nenhum currículo cadastrado';
+  }
+
+  selectedFile = null;
+  const fileInput = document.getElementById('apply-upload-file');
+  if (fileInput) fileInput.value = '';
+  const chosenFileName = document.getElementById('chosen-file-name');
+  if (chosenFileName) {
+    chosenFileName.textContent = '';
+    chosenFileName.style.display = 'none';
+  }
+
+  if (aluno.curriculoSalvoPath) {
+    document.getElementById('cv-radio-saved').checked = true;
+  } else {
+    document.getElementById('cv-radio-builder').checked = true;
+  }
+
+  goToStep(1);
+}
+
+window.closeApplyModal = function () {
+  const modal = document.getElementById('apply-modal');
+  if (modal) {
+    modal.classList.remove('open');
+  }
+};
+
+window.closeApplyModalAndRefresh = function () {
+  closeApplyModal();
+
+  if (currentJob) {
+    currentJob.badge = 'Candidatado';
+    currentJob.badgeType = 'applied';
+    currentJob.actionType = 'disabled';
+    currentJob.status = 'Candidatura Enviada';
+    currentJob.status_percent = 100;
+
+    const appliedJobs = JSON.parse(localStorage.getItem('applied_jobs') || '{}');
+    appliedJobs[currentJob.id] = true;
+    localStorage.setItem('applied_jobs', JSON.stringify(appliedJobs));
+
+    renderDetails(currentJob);
+  }
+};
+
+window.goToStep = function (stepNumber) {
+  if (stepNumber === 2) {
+    const aluno = getAlunoProfile();
+    const skillsInput = document.getElementById('apply-skills-input').value;
+    aluno.habilidades = skillsInput
+      ? skillsInput.split(',').map(s => s.trim()).filter(s => s.length > 0)
+      : [];
+    saveAlunoProfile(aluno);
+
+    window.dispatchEvent(new CustomEvent('profile-updated'));
+  }
+
+  for (let i = 1; i <= 3; i++) {
+    const ind = document.getElementById(`step-ind-${i}`);
+    const line = document.getElementById(`step-line-${i}`);
+
+    if (ind) {
+      if (i < stepNumber) {
+        ind.className = 'step-indicator completed';
+        ind.innerHTML = '<span class="material-symbols-outlined" style="font-size:16px; color:#ffffff;">check</span>';
+      } else if (i === stepNumber) {
+        ind.className = 'step-indicator active';
+        ind.textContent = i;
+      } else {
+        ind.className = 'step-indicator';
+        ind.textContent = i;
+      }
+    }
+
+    if (line) {
+      if (i < stepNumber) {
+        line.className = 'step-line completed';
+      } else {
+        line.className = 'step-line';
+      }
+    }
+  }
+
+  document.querySelectorAll('.apply-step').forEach(stepDiv => {
+    stepDiv.classList.remove('active');
+  });
+
+  const activeStep = document.getElementById(`apply-step-${stepNumber}`);
+  if (activeStep) {
+    activeStep.classList.add('active');
+  }
+};
+
+window.handleApplyCVUpload = function (event) {
+  const file = event.target.files[0];
+  if (file) {
+    selectedFile = file;
+    const label = document.getElementById('chosen-file-name');
+    if (label) {
+      label.textContent = `Selecionado: ${file.name}`;
+      label.style.display = 'block';
+    }
+    document.getElementById('cv-radio-upload').checked = true;
+  }
+};
+
+window.toggleCVChoice = function () {
+  const uploadRadio = document.getElementById('cv-radio-upload');
+  if (uploadRadio && uploadRadio.checked && !selectedFile) {
+    document.getElementById('apply-upload-file').click();
+  }
+};
+
+window.submitCandidacyFlow = function () {
+  const aluno = getAlunoProfile();
+  const cvSource = document.querySelector('input[name="cv-source"]:checked').value;
+
+  let cvFile = null;
+  if (cvSource === 'saved') {
+    if (!aluno.curriculoSalvoPath) {
+      alert('Nenhum currículo cadastrado encontrado. Por favor, faça upload ou use o gerador automático.');
+      return;
+    }
+    cvFile = aluno.curriculoSalvoPath;
+  } else if (cvSource === 'upload') {
+    if (!selectedFile) {
+      alert('Por favor, selecione um arquivo de currículo PDF.');
+      return;
+    }
+    cvFile = selectedFile.name;
+    aluno.curriculoSalvoPath = `uploads/${selectedFile.name}`;
+    saveAlunoProfile(aluno);
+    window.dispatchEvent(new CustomEvent('profile-updated'));
+  } else if (cvSource === 'builder') {
+    cvFile = 'auto_generated_cv.pdf';
+  }
+
+  try {
+    const mgr = new window.GerenciadorCandidaturas();
+    const candidacy = mgr.enviarCandidatura(aluno, currentJob, cvFile);
+
+    document.getElementById('apply-protocol-num').textContent = `#${candidacy.idCandidatura}`;
+
+    goToStep(3);
+  } catch (error) {
+    console.error(error);
+    alert('Erro ao enviar candidatura: ' + error.message);
+  }
+};
+
+function applyForJob() {
+  openApplyModal();
 }
 
 function showError(msg) {
@@ -174,5 +384,18 @@ function showError(msg) {
 
 window.addEventListener('save-job', toggleJobBookmark);
 window.addEventListener('apply-job', applyForJob);
+
+window.addEventListener('profile-updated', () => {
+  if (currentJob) {
+    const aluno = getAlunoProfile();
+    const applyNome = document.getElementById('apply-nome');
+    if (applyNome) {
+      applyNome.textContent = aluno.nome;
+      document.getElementById('apply-curso').textContent = aluno.curso;
+      document.getElementById('apply-matricula').textContent = aluno.matricula;
+      document.getElementById('apply-periodo').textContent = aluno.periodo;
+    }
+  }
+});
 
 document.addEventListener('DOMContentLoaded', loadJobDetails);

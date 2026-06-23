@@ -13,9 +13,11 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="../css/style.css?v=4" />
     <link rel="stylesheet" href="../css/jobDetails.css?v=4" />
+    <script src="../js/models.js"></script>
     <script src="../js/jobOpenings.js?v=4"></script>
     <script src="../js/components/headerComponent.js?v=4"></script>
     <script src="../js/components/sidebarComponent.js?v=4"></script>
+    <script src="../js/components/bottomNavComponent.js"></script>
     <script src="../js/jobDetails.js?v=4"></script>
 </head>
 
@@ -135,6 +137,111 @@
             Candidatar-se
         </button>
     </div>
+
+    <!-- Candidacy Stepper Modal -->
+    <div id="apply-modal" class="bottom-nav-modal apply-stepper-modal">
+        <div class="modal-overlay" onclick="closeApplyModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Candidatura de Estágio</h3>
+                <button class="close-modal-btn" onclick="closeApplyModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Stepper Progress Indicator -->
+                <div class="stepper-indicator">
+                    <div class="step-indicator active" id="step-ind-1">1</div>
+                    <div class="step-line" id="step-line-1"></div>
+                    <div class="step-indicator" id="step-ind-2">2</div>
+                    <div class="step-line" id="step-line-2"></div>
+                    <div class="step-indicator" id="step-ind-3">3</div>
+                </div>
+
+                <!-- Step 1: Profile Confirmation -->
+                <div class="apply-step active" id="apply-step-1">
+                    <p class="step-intro">Confirme as suas informações acadêmicas institucionais:</p>
+                    <div class="profile-preview-card">
+                        <p><strong>Nome:</strong> <span id="apply-nome">Carregando...</span></p>
+                        <p><strong>Curso:</strong> <span id="apply-curso">Carregando...</span></p>
+                        <p><strong>Matrícula:</strong> <span id="apply-matricula">Carregando...</span></p>
+                        <p><strong>Período:</strong> <span id="apply-periodo">Carregando...</span>º período</p>
+                    </div>
+                    <div class="skills-input-section">
+                        <label for="apply-skills-input"><strong>Habilidades & Competências</strong></label>
+                        <p class="field-tip">Adicione tags separadas por vírgula para destacar seu perfil para esta vaga.</p>
+                        <input type="text" id="apply-skills-input" placeholder="ex: Git, React, REST APIs">
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn-step-next" onclick="goToStep(2)">Confirmar e Avançar</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Resume / CV Upload -->
+                <div class="apply-step" id="apply-step-2">
+                    <p class="step-intro">Selecione ou anexe o seu currículo:</p>
+                    <div class="cv-options-container">
+                        <label class="cv-option-card">
+                            <input type="radio" name="cv-source" value="saved" checked id="cv-radio-saved" onchange="toggleCVChoice()">
+                            <div class="cv-option-content">
+                                <span class="material-symbols-outlined">description</span>
+                                <div>
+                                    <p class="cv-option-title">Usar Currículo Cadastrado</p>
+                                    <p class="cv-option-desc" id="apply-saved-cv-name">Nenhum cadastrado</p>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="cv-option-card" onclick="document.getElementById('apply-upload-file').click()">
+                            <input type="radio" name="cv-source" value="upload" id="cv-radio-upload" onchange="toggleCVChoice()">
+                            <div class="cv-option-content">
+                                <span class="material-symbols-outlined">upload_file</span>
+                                <div>
+                                    <p class="cv-option-title">Fazer Upload de Novo PDF</p>
+                                    <p class="cv-option-desc">Selecione um arquivo PDF do seu dispositivo</p>
+                                    <input type="file" id="apply-upload-file" accept="application/pdf" style="display:none;" onchange="handleApplyCVUpload(event)">
+                                    <span class="file-chosen-name" id="chosen-file-name" style="display:none; color: var(--click-color); font-weight: 500; font-size:12px; margin-top:4px;"></span>
+                                </div>
+                            </div>
+                        </label>
+                        <label class="cv-option-card">
+                            <input type="radio" name="cv-source" value="builder" id="cv-radio-builder" onchange="toggleCVChoice()">
+                            <div class="cv-option-content">
+                                <span class="material-symbols-outlined">auto_awesome</span>
+                                <div>
+                                    <p class="cv-option-title">Gerar Currículo Automático</p>
+                                    <p class="cv-option-desc">Criar CV básico a partir dos dados do seu perfil acadêmico</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn-step-back" onclick="goToStep(1)">Voltar</button>
+                        <button class="btn-step-next" id="btn-submit-candidacy" onclick="submitCandidacyFlow()">Enviar Candidatura</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Success Confirmation -->
+                <div class="apply-step" id="apply-step-3">
+                    <div class="success-screen">
+                        <div class="success-icon-wrapper">
+                            <span class="material-symbols-outlined check-success-icon">check_circle</span>
+                        </div>
+                        <h3>Candidatura Registrada!</h3>
+                        <p class="success-desc">Sua candidatura para a vaga foi enviada com sucesso ao departamento de RH da empresa.</p>
+                        <div class="protocol-card">
+                            <p class="protocol-title">NÚMERO DE PROTOCOLO</p>
+                            <p class="protocol-num" id="apply-protocol-num">#00000</p>
+                        </div>
+                        <div class="notif-email-card">
+                            <span class="material-symbols-outlined">mail_lock</span>
+                            <p>Um e-mail de confirmação com os detalhes da vaga foi enviado para a sua conta institucional do Inatel.</p>
+                        </div>
+                        <button class="btn-success-close" onclick="closeApplyModalAndRefresh()">Concluir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <bottom-nav-component></bottom-nav-component>
 </body>
 
 </html>
