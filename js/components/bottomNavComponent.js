@@ -5,7 +5,13 @@ class BottomNavComponent extends HTMLElement {
   }
 
   initProfile() {
-    if (!localStorage.getItem('aluno_profile')) {
+    let profile = null;
+    try {
+      profile = JSON.parse(localStorage.getItem('aluno_profile'));
+    } catch (e) {
+      profile = null;
+    }
+    if (!profile || !profile.nome) {
       const defaultProfile = {
         idAluno: 101,
         nome: 'Lucas Andrade',
@@ -20,15 +26,32 @@ class BottomNavComponent extends HTMLElement {
   }
 
   getAlunoInstance() {
-    const data = JSON.parse(localStorage.getItem('aluno_profile'));
+    let data = null;
+    try {
+      data = JSON.parse(localStorage.getItem('aluno_profile'));
+    } catch (e) {
+      data = null;
+    }
+    if (!data || !data.nome) {
+      data = {
+        idAluno: 101,
+        nome: 'Lucas Andrade',
+        matricula: '1542',
+        curso: 'Engenharia de Software',
+        periodo: 5,
+        curriculoSalvoPath: 'curriculo_lucas.pdf',
+        habilidades: ['HTML', 'CSS', 'JavaScript', 'Python']
+      };
+      localStorage.setItem('aluno_profile', JSON.stringify(data));
+    }
     return new AlunoCandidato(
-      data.idAluno,
-      data.nome,
-      data.matricula,
-      data.curso,
-      data.periodo,
-      data.curriculoSalvoPath,
-      data.habilidades
+      data.idAluno || 101,
+      data.nome || 'Lucas Andrade',
+      data.matricula || '1542',
+      data.curso || 'Engenharia de Software',
+      data.periodo || 5,
+      data.curriculoSalvoPath || 'curriculo_lucas.pdf',
+      data.habilidades || []
     );
   }
 
@@ -213,7 +236,7 @@ class BottomNavComponent extends HTMLElement {
     this.querySelector('#prof-matricula').value = aluno.matricula;
     this.querySelector('#prof-periodo').value = aluno.periodo;
     this.querySelector('#prof-curso').value = aluno.curso;
-    this.querySelector('#prof-habilidades').value = aluno.habilidades.join(', ');
+    this.querySelector('#prof-habilidades').value = (aluno.habilidades || []).join(', ');
 
     const cvName = aluno.curriculoSalvoPath
       ? aluno.curriculoSalvoPath.replace('uploads/', '')

@@ -163,7 +163,13 @@ function toggleJobBookmark() {
 let selectedFile = null;
 
 function getAlunoProfile() {
-  if (!localStorage.getItem('aluno_profile')) {
+  let data = null;
+  try {
+    data = JSON.parse(localStorage.getItem('aluno_profile'));
+  } catch (e) {
+    data = null;
+  }
+  if (!data || !data.nome) {
     const defaultProfile = {
       idAluno: 101,
       nome: 'Lucas Andrade',
@@ -174,16 +180,16 @@ function getAlunoProfile() {
       habilidades: ['HTML', 'CSS', 'JavaScript', 'Python']
     };
     localStorage.setItem('aluno_profile', JSON.stringify(defaultProfile));
+    data = defaultProfile;
   }
-  const data = JSON.parse(localStorage.getItem('aluno_profile'));
   return new window.AlunoCandidato(
-    data.idAluno,
-    data.nome,
-    data.matricula,
-    data.curso,
-    data.periodo,
-    data.curriculoSalvoPath,
-    data.habilidades
+    data.idAluno || 101,
+    data.nome || 'Lucas Andrade',
+    data.matricula || '1542',
+    data.curso || 'Engenharia de Software',
+    data.periodo || 5,
+    data.curriculoSalvoPath || 'curriculo_lucas.pdf',
+    data.habilidades || []
   );
 }
 
@@ -205,7 +211,7 @@ function openApplyModal() {
   document.getElementById('apply-matricula').textContent = aluno.matricula;
   document.getElementById('apply-periodo').textContent = aluno.periodo;
 
-  document.getElementById('apply-skills-input').value = aluno.habilidades.join(', ');
+  document.getElementById('apply-skills-input').value = (aluno.habilidades || []).join(', ');
 
   const savedCvDesc = document.getElementById('apply-saved-cv-name');
   if (savedCvDesc) {

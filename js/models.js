@@ -6,7 +6,7 @@ class AlunoCandidato {
     this.curso = curso;
     this.periodo = periodo;
     this.curriculoSalvoPath = curriculoSalvoPath;
-    this.habilidades = habilidades;
+    this.habilidades = habilidades || [];
   }
 
   visualizarPerfil() {
@@ -131,9 +131,7 @@ class GerenciadorCandidaturas {
   }
 
   notificarCandidato(aluno, mensagem) {
-    console.log(`[Notificação Aluno - ${aluno.nome} <${aluno.matricula}@inatel.br>]: ${mensagem}`);
-
-    const stored = localStorage.getItem('user_notifications') || '[]';
+    const stored = localStorage.getItem(`user_${aluno.matricula}_notifications`) || '[]';
     const notifications = JSON.parse(stored);
     notifications.unshift({
       id: Date.now(),
@@ -141,7 +139,7 @@ class GerenciadorCandidaturas {
       date: new Date().toLocaleDateString('pt-BR'),
       read: false
     });
-    localStorage.setItem('user_notifications', JSON.stringify(notifications));
+    localStorage.setItem(`user_${aluno.matricula}_notifications`, JSON.stringify(notifications));
 
     window.dispatchEvent(new CustomEvent('new-notification', { detail: mensagem }));
   }

@@ -29,15 +29,12 @@ let failed = false;
 function test(name, fn) {
   try {
     fn();
-    console.log(`✅ PASS: ${name}`);
   } catch (err) {
     console.error(`❌ FAIL: ${name}`);
     console.error(err);
     failed = true;
   }
 }
-
-console.log('Starting Inatel Job Module Unit Tests...\n');
 
 test('AlunoCandidato Profile Initialization and Update', () => {
   const aluno = new AlunoCandidato(
@@ -116,16 +113,14 @@ test('GerenciadorCandidaturas Submission Workflow', () => {
   if (candidacy.statusCandidatura !== 'ENVIADA') throw new Error('Initial status should be ENVIADA');
   if (manager.totalCandidaturas !== 1) throw new Error('Candidacies counter did not increment');
 
-  const storedNotif = JSON.parse(localStorage.getItem('user_notifications'));
+  const storedNotif = JSON.parse(localStorage.getItem(`user_${aluno.matricula}_notifications`));
   if (storedNotif.length !== 1) throw new Error('Notification was not saved to localStorage');
   if (!storedNotif[0].message.includes('ABC Tech')) throw new Error('Notification message incorrect');
 });
 
-console.log('\n--- Unit Test Summary ---');
 if (failed) {
   console.error('❌ Some unit tests failed.');
   process.exit(1);
 } else {
-  console.log('🎉 All unit tests completed successfully!');
   process.exit(0);
 }
