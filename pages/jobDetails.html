@@ -14,11 +14,11 @@
     <link rel="stylesheet" href="../css/style.css?v=9" />
     <link rel="stylesheet" href="../css/jobDetails.css?v=9" />
     <script src="../js/models.js"></script>
-    <script src="../js/jobOpenings.js?v=4"></script>
-    <script src="../js/components/headerComponent.js?v=4"></script>
-    <script src="../js/components/sidebarComponent.js?v=4"></script>
+    <script src="../js/jobOpenings.js"></script>
+    <script src="../js/components/headerComponent.js"></script>
+    <script src="../js/components/sidebarComponent.js"></script>
     <script src="../js/components/bottomNavComponent.js"></script>
-    <script src="../js/jobDetails.js?v=4"></script>
+    <script src="../js/jobDetails.js"></script>
 </head>
 
 <body>
@@ -167,7 +167,8 @@
                     </div>
                     <div class="skills-input-section">
                         <label for="apply-skills-input"><strong>Habilidades & Competências</strong></label>
-                        <p class="field-tip">Adicione tags separadas por vírgula para destacar seu perfil para esta vaga.</p>
+                        <p class="field-tip">Adicione tags separadas por vírgula para destacar seu perfil para esta
+                            vaga.</p>
                         <input type="text" id="apply-skills-input" placeholder="ex: Git, React, REST APIs">
                     </div>
                     <div class="step-actions">
@@ -180,7 +181,8 @@
                     <p class="step-intro">Selecione ou anexe o seu currículo:</p>
                     <div class="cv-options-container">
                         <label class="cv-option-card">
-                            <input type="radio" name="cv-source" value="saved" checked id="cv-radio-saved" onchange="toggleCVChoice()">
+                            <input type="radio" name="cv-source" value="saved" checked id="cv-radio-saved"
+                                onchange="toggleCVChoice()">
                             <div class="cv-option-content">
                                 <span class="material-symbols-outlined">description</span>
                                 <div>
@@ -190,31 +192,37 @@
                             </div>
                         </label>
                         <label class="cv-option-card" onclick="document.getElementById('apply-upload-file').click()">
-                            <input type="radio" name="cv-source" value="upload" id="cv-radio-upload" onchange="toggleCVChoice()">
+                            <input type="radio" name="cv-source" value="upload" id="cv-radio-upload"
+                                onchange="toggleCVChoice()">
                             <div class="cv-option-content">
                                 <span class="material-symbols-outlined">upload_file</span>
                                 <div>
                                     <p class="cv-option-title">Fazer Upload de Novo PDF</p>
                                     <p class="cv-option-desc">Selecione um arquivo PDF do seu dispositivo</p>
-                                    <input type="file" id="apply-upload-file" accept="application/pdf" style="display:none;" onchange="handleApplyCVUpload(event)">
-                                    <span class="file-chosen-name" id="chosen-file-name" style="display:none; color: var(--click-color); font-weight: 500; font-size:12px; margin-top:4px;"></span>
+                                    <input type="file" id="apply-upload-file" accept="application/pdf"
+                                        style="display:none;" onchange="handleApplyCVUpload(event)">
+                                    <span class="file-chosen-name" id="chosen-file-name"
+                                        style="display:none; color: var(--click-color); font-weight: 500; font-size:12px; margin-top:4px;"></span>
                                 </div>
                             </div>
                         </label>
                         <label class="cv-option-card">
-                            <input type="radio" name="cv-source" value="builder" id="cv-radio-builder" onchange="toggleCVChoice()">
+                            <input type="radio" name="cv-source" value="builder" id="cv-radio-builder"
+                                onchange="toggleCVChoice()">
                             <div class="cv-option-content">
                                 <span class="material-symbols-outlined">auto_awesome</span>
                                 <div>
                                     <p class="cv-option-title">Gerar Currículo Automático</p>
-                                    <p class="cv-option-desc">Criar CV básico a partir dos dados do seu perfil acadêmico</p>
+                                    <p class="cv-option-desc">Criar CV básico a partir dos dados do seu perfil acadêmico
+                                    </p>
                                 </div>
                             </div>
                         </label>
                     </div>
                     <div class="step-actions">
                         <button class="btn-step-back" onclick="goToStep(1)">Voltar</button>
-                        <button class="btn-step-next" id="btn-submit-candidacy" onclick="submitCandidacyFlow()">Enviar Candidatura</button>
+                        <button class="btn-step-next" id="btn-submit-candidacy" onclick="submitCandidacyFlow()">Enviar
+                            Candidatura</button>
                     </div>
                 </div>
 
@@ -225,14 +233,16 @@
                             <span class="material-symbols-outlined check-success-icon">check_circle</span>
                         </div>
                         <h3>Candidatura Registrada!</h3>
-                        <p class="success-desc">Sua candidatura para a vaga foi enviada com sucesso ao departamento de RH da empresa.</p>
+                        <p class="success-desc">Sua candidatura para a vaga foi enviada com sucesso ao departamento de
+                            RH da empresa.</p>
                         <div class="protocol-card">
                             <p class="protocol-title">NÚMERO DE PROTOCOLO</p>
                             <p class="protocol-num" id="apply-protocol-num">#00000</p>
                         </div>
                         <div class="notif-email-card">
                             <span class="material-symbols-outlined">mail_lock</span>
-                            <p>Um e-mail de confirmação com os detalhes da vaga foi enviado para a sua conta institucional do Inatel.</p>
+                            <p>Um e-mail de confirmação com os detalhes da vaga foi enviado para a sua conta
+                                institucional do Inatel.</p>
                         </div>
                         <button class="btn-success-close" onclick="closeApplyModalAndRefresh()">Concluir</button>
                     </div>
