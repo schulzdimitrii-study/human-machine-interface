@@ -656,3 +656,20 @@ body {
     padding-bottom: 0 !important;
   }
 }
+
+@media (max-width: 767px) {
+  header {
+    position: relative;
+  }
+  #logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  #profile {
+    display: none !important;
+  }
+  #menu {
+    display: block !important;
+  }
+}
