@@ -304,7 +304,7 @@ main {
   gap: 8px;
   padding: 8px 16px;
   border: 1px solid var(--outline-variant, #c2c6d2);
-  background-color: #ffffff;
+  background-color: var(--bg-color-2, #ffffff);
   color: var(--click-color, #126ae2);
   border-radius: 8px;
   font-size: 14px;
@@ -314,7 +314,7 @@ main {
 }
 
 .btn-header-save:hover {
-  background-color: #f2f4f9;
+  background-color: var(--bg-color-1, #f2f4f9);
 }
 
 .btn-header-apply {

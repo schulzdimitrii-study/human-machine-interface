@@ -76,8 +76,8 @@ body {
 }
 
 .bento-card {
-  background-color: var(--surface-container-lowest, #ffffff);
-  border: 1px solid var(--surface-variant, #e0e2e7);
+  background-color: var(--bg-color-2, #ffffff);
+  border: 1px solid var(--outline-variant, #e0e2e7);
   border-radius: 12px;
   padding: 24px;
   box-shadow: 0px 4px 12px rgba(0, 35, 75, 0.05);
@@ -184,7 +184,7 @@ body {
 }
 
 .progress-bar-container {
-  background-color: var(--surface-container-high, #e6e8ed);
+  background-color: var(--bg-color-1, #e6e8ed);
   border-radius: 9999px;
   height: 8px;
   overflow: hidden;
@@ -345,7 +345,7 @@ body {
   bottom: 64px;
   left: 0;
   width: 100%;
-  background: var(--surface-container-lowest, #ffffff);
+  background: var(--bg-color-2, #ffffff);
   border-top: 1px solid var(--outline-variant, #c2c6d2);
   padding: 16px;
   z-index: 50;
@@ -369,7 +369,7 @@ body {
   gap: 8px;
   padding: 12px;
   border: 1px solid var(--outline-variant, #c2c6d2);
-  background-color: #ffffff;
+  background-color: var(--bg-color-2, #ffffff);
   color: var(--click-color, #126ae2);
   border-radius: 8px;
   font-family: "Hanken Grotesk", sans-serif;
@@ -398,7 +398,7 @@ body {
 
 .btn-mobile-apply:disabled,
 .btn-mobile-apply.btn-disabled {
-  background-color: var(--surface-container-high, #e6e8ed) !important;
+  background-color: var(--bg-color-1, #e6e8ed) !important;
   color: var(--text-color) !important;
   opacity: 0.6;
   cursor: not-allowed;
@@ -585,7 +585,7 @@ body {
   font-size: 14px;
   font-family: inherit;
   color: var(--text-color);
-  background-color: var(--surface-container-lowest, #ffffff);
+  background-color: var(--bg-color-2, #ffffff);
 }
 
 .skills-input-section input:focus {
@@ -614,7 +614,7 @@ body {
 
 .cv-option-card:hover {
   border-color: var(--click-color, #126ae2);
-  background-color: #f5f9ff;
+  background-color: rgba(18, 106, 226, 0.08);
 }
 
 .cv-option-card input[type="radio"] {
@@ -674,7 +674,7 @@ body {
 }
 
 .btn-step-back {
-  background-color: #ffffff;
+  background-color: var(--bg-color-2, #ffffff);
   color: var(--text-color);
   border: 1px solid var(--outline-variant, #c2c6d2);
 }

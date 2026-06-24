@@ -59,7 +59,7 @@ body {
 .search-bar-wrapper {
   display: flex;
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--bg-color-2, #ffffff);
   border: 1px solid #c2c6d2;
   border-radius: 8px;
   transition: all 0.2s ease;
@@ -158,9 +158,9 @@ body {
 
 .load-more-button {
   padding: 12px 24px;
-  border: 1px solid #c2c6d2;
+  border: 1px solid var(--outline-variant, #c2c6d2);
   color: var(--text-color);
-  background-color: #ffffff;
+  background-color: var(--bg-color-2, #ffffff);
   border-radius: 8px;
   font-family: "Hanken Grotesk", sans-serif;
   font-size: 14px;
@@ -172,13 +172,13 @@ body {
 }
 
 .load-more-button:hover {
-  background-color: #f2f4f9;
+  background-color: var(--bg-color-1, #f2f4f9);
 }
 
 /* Job Card Styling */
 .job-card {
-  background-color: #ffffff;
-  border: 1px solid #e0e2e7;
+  background-color: var(--bg-color-2, #ffffff);
+  border: 1px solid var(--outline-variant, #e0e2e7);
   border-radius: 12px;
   padding: 24px;
   display: flex;
@@ -230,7 +230,8 @@ body {
   font-family: "Nunito Sans", sans-serif;
   font-size: 16px;
   line-height: 24px;
-  color: #424750;
+  color: var(--text-color);
+  opacity: 0.7;
   margin: 0;
 }
 
@@ -250,7 +251,8 @@ body {
 }
 
 .bookmark-icon-inactive {
-  color: #424750;
+  color: var(--text-color);
+  opacity: 0.7;
   transition: color 0.2s ease;
 }
 
@@ -269,14 +271,16 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #424750;
+  color: var(--text-color);
+  opacity: 0.8;
   font-family: "Nunito Sans", sans-serif;
   font-size: 14px;
   line-height: 20px;
 }
 
 .job-details-item .material-symbols-outlined {
-  color: #727782;
+  color: var(--text-color);
+  opacity: 0.6;
   font-size: 18px;
 }
 
@@ -305,8 +309,9 @@ body {
 }
 
 .badge-new {
-  background-color: #eceef3;
-  color: #424750;
+  background-color: var(--bg-color-1, #eceef3);
+  color: var(--text-color);
+  opacity: 0.8;
 }
 
 .badge-urgent {
@@ -324,7 +329,7 @@ body {
   padding: 8px 16px;
   border: 1px solid var(--click-color);
   color: var(--click-color);
-  background-color: #ffffff;
+  background-color: var(--bg-color-2, #ffffff);
   border-radius: 8px;
   font-family: "Hanken Grotesk", sans-serif;
   font-size: 12px;
@@ -338,7 +343,7 @@ body {
 }
 
 .btn-view-job:hover {
-  background-color: #f2f4f9;
+  background-color: var(--bg-color-1, #f2f4f9);
 }
 
 .btn-view-job .material-symbols-outlined {
@@ -348,8 +353,8 @@ body {
 
 .btn-details-disabled {
   padding: 8px 16px;
-  background-color: #eceef3;
-  color: #424750;
+  background-color: var(--bg-color-1, #eceef3);
+  color: var(--text-color);
   border: none;
   border-radius: 8px;
   font-family: "Hanken Grotesk", sans-serif;
@@ -359,7 +364,7 @@ body {
   display: flex;
   align-items: center;
   gap: 4px;
-  opacity: 0.7;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
