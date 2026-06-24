@@ -137,3 +137,24 @@ if (savedTheme === 'dark') {
 } else {
     inatelTheme();
 }
+
+function loadGreetingName() {
+    const savedProfile = localStorage.getItem('aluno_profile');
+    if (savedProfile) {
+        try {
+            const data = JSON.parse(savedProfile);
+            const greeting = document.getElementById('user_name');
+            if (greeting && data && data.nome) {
+                greeting.textContent = `Olá ${data.nome}!`;
+            }
+        } catch (e) {
+            console.error('Error loading profile greeting:', e);
+        }
+    }
+}
+
+// Initial load
+loadGreetingName();
+
+// Listen to updates from other pages/components
+window.addEventListener('profile-updated', loadGreetingName);

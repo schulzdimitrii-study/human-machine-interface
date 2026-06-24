@@ -13,7 +13,6 @@ class HeaderComponent extends HTMLElement {
 
   connectedCallback() {
     const type = this.getAttribute('type') || 'home';
-    const jobTitle = this.getAttribute('job-title') || '';
 
     let leftElement = `
         <div id="menu" onclick="openMenu()">
@@ -35,12 +34,12 @@ class HeaderComponent extends HTMLElement {
               Candidatar-se à Vaga
             </button>
           </div>
-          <div id="profile"><span class="material-symbols-outlined icoG">Person</span></div>
+          <div id="profile" onclick="window.openProfileModal()"><span class="material-symbols-outlined icoG">Person</span></div>
         </div>
       `;
     } else {
       rightElement = `
-        <div id="profile"><span class="material-symbols-outlined icoG">Person</span></div>
+        <div id="profile" onclick="window.openProfileModal()"><span class="material-symbols-outlined icoG">Person</span></div>
       `;
     }
 
@@ -60,8 +59,32 @@ class HeaderComponent extends HTMLElement {
         ${rightElement}
       </header>
     `;
+
+    const profileBtn = this.querySelector('#profile');
+    if (profileBtn) {
+      profileBtn.addEventListener('click', () => {
+        window.openProfileModal();
+      });
+    }
   }
 }
+
+window.openProfileModal = function () {
+  const profileModal = document.getElementById('profile-modal');
+  if (profileModal) {
+    const bottomNav = document.querySelector('bottom-nav-component');
+    if (bottomNav) {
+      try {
+        bottomNav.populateProfileForm();
+      } catch (e) {
+        console.error('window.openProfileModal: populateProfileForm failed:', e);
+      }
+    }
+    profileModal.classList.add('open');
+  } else {
+    console.warn('window.openProfileModal: profileModal not found in DOM');
+  }
+};
 
 customElements.define('header-component', HeaderComponent);
 
