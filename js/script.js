@@ -131,4 +131,9 @@ function updateCarousel() {
 document.getElementById('nextBtn').addEventListener('click', nextCard);
 document.getElementById('prevBtn').addEventListener('click', prevCard);
 
-inatelTheme();
+const savedTheme = localStorage.getItem('app_theme') || 'inatel';
+if (savedTheme === 'dark') {
+    darkTheme();
+} else {
+    inatelTheme();
+}

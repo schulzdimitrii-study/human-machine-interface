@@ -34,6 +34,9 @@ class SidebarComponent extends HTMLElement {
         }
       }
     });
+
+    const savedTheme = localStorage.getItem('app_theme') || 'inatel';
+    this.setTheme(savedTheme);
   }
 
   openMenu() {
@@ -51,6 +54,7 @@ class SidebarComponent extends HTMLElement {
   }
 
   setTheme(themeName) {
+    localStorage.setItem('app_theme', themeName);
     this.closeMenu();
     
     let colors = {};
